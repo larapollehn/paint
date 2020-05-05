@@ -8,8 +8,6 @@ export default class PaintController{
     }
 
     setup(){
-        this.view.addEventListener();
-        this.view.displayColorPallet();
-        this.view.displayCurrentColor();
+        this.view.initialize();
     }
 }

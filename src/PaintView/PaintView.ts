@@ -1,8 +1,7 @@
-import BlackColor from "../Colors/BlackColor";
-import Black from "../Colors/BlackColor";
 import {CANVAS} from "../Globals";
 import Gear from "../Gear/Gear";
 import Brush from "../Gear/Brush";
+import Black from "../Colors/BlackColor";
 import Magenta from "../Colors/MagentaColor";
 import Yellow from "../Colors/YellowColor";
 import Green from "../Colors/GreenColor";
@@ -15,48 +14,62 @@ export default class PaintView {
     public currentColor: IColor = Magenta;
     public colorOptions: Map<string, IColor> = new Map<string, IColor>();
     public currentGear: Gear = new Brush();
+    public cache: Map<string, Function> = new Map();
 
     constructor() {
-        this.colorOptions.set('black', Black);
-        this.colorOptions.set('red', Red);
-        this.colorOptions.set('yellow', Yellow);
-        this.colorOptions.set('green', Green);
-        this.colorOptions.set('brown', Brown);
-        this.colorOptions.set('blue', Blue);
-        this.colorOptions.set('orange', Orange);
-        this.colorOptions.set('magenta', Magenta);
+        [Black, Red, Yellow, Magenta, Green, Brown, Yellow, Orange, Blue].forEach(color => {
+            this.colorOptions[color.name()] = color;
+        })
+        this.cache["oldStart"] = this.currentGear.start;
+        this.cache['oldFinish'] = this.currentGear.finish;
+        this.cache['oldDraw'] = this.currentGear.draw(this.currentColor);
 
         this.addEventListener = this.addEventListener.bind(this);
         this.displayColorPallet = this.displayColorPallet.bind(this);
         this.colorChange = this.colorChange.bind(this);
     }
 
-    addEventListener() {
-        CANVAS.addEventListener('mousedown', this.currentGear.start)
-        CANVAS.addEventListener('mouseup', this.currentGear.finish);
-        CANVAS.addEventListener('mousemove', this.currentGear.draw(this.currentColor));
+    initialize(){
+        this.addEventListener();
+        this.displayColorPallet();
+        this.displayCurrentColor();
     }
 
-    displayCurrentColor(){
+    addEventListener() {
+        CANVAS.removeEventListener("mousedown", this.cache["oldStart"]);
+        CANVAS.removeEventListener('mouseup', this.cache['oldFinish']);
+        CANVAS.removeEventListener('mousemove', this.cache['oldDraw']);
+
+        this.cache["oldStart"] = this.currentGear.start;
+        this.cache['oldFinish'] = this.currentGear.finish;
+        this.cache['oldDraw'] = this.currentGear.draw(this.currentColor);
+
+        CANVAS.addEventListener('mousedown',  this.cache["oldStart"])
+        CANVAS.addEventListener('mouseup', this.cache['oldFinish']);
+        CANVAS.addEventListener('mousemove', this.cache['oldDraw']);
+    }
+
+    displayCurrentColor() {
         const currentColorSquare = document.getElementById('currentColor');
         currentColorSquare.style.backgroundColor = this.currentColor.name();
     }
 
-    displayColorPallet(){
+    displayColorPallet() {
         const colorOptionsContainer = document.getElementById('colorOptions');
-        this.colorOptions.forEach(color =>{
+        for(let color in this.colorOptions){
             const square = document.createElement('div');
             square.classList.add('colorOptions');
-            square.style.backgroundColor = color.name();
-            square.id = color.name();
+            square.style.backgroundColor = this.colorOptions[color].name();
+            square.id = this.colorOptions[color].name();
             square.addEventListener('click', this.colorChange)
             colorOptionsContainer.appendChild(square);
-        });
+        }
     }
 
-    colorChange(event){
-        this.currentColor = this.colorOptions.get(event.toElement.id)
+    colorChange(event) {
+        this.currentColor = this.colorOptions[event.toElement.id];
         this.displayCurrentColor();
+        this.addEventListener();
     }
 
 }
