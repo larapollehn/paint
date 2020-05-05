@@ -9,6 +9,8 @@ export default class Airbrush extends Gear{
 
     constructor() {
         super(spray_icon);
+
+        this.airbrushEffect = this.airbrushEffect.bind(this);
     }
 
     start(event): void {
@@ -28,17 +30,22 @@ export default class Airbrush extends Gear{
             if (self.painting){
                 CONTEXT.lineWidth = 0.1;
                 CONTEXT.lineCap = 'round';
-                CONTEXT.lineTo(event.clientX, event.clientY);
+                self.airbrushEffect(event.clientX, event.clientY);
                 CONTEXT.strokeStyle = color.rgbValue;
                 CONTEXT.stroke();
                 CONTEXT.beginPath();
-                CONTEXT.moveTo(event.clientX, event.clientY);
+                self.airbrushEffect(event.clientX, event.clientY);
             }
         }
         return toDraw;
     }
 
     airbrushEffect(x, y){
+        for (let i = 0; i < 50; i++){
+            const randomPosX = Math.floor(Math.random() * Math.floor(20))
+            const randomPosY = Math.floor(Math.random() * Math.floor(20))
+            CONTEXT.lineTo(x+randomPosX, y+randomPosY);
+        }
     }
 
 }

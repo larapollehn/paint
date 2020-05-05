@@ -1,6 +1,5 @@
 import {CANVAS, COLORS, DEFAULT_COLOR, DEFAULT_GEAR, GEARS} from "../Globals";
 import Gear from "../Gear/Gear";
-import Brush from "../Gear/Brush";
 import {Color} from "../Colors/Color";
 
 export default class PaintView {
@@ -27,6 +26,7 @@ export default class PaintView {
         this.displayColorPallet = this.displayColorPallet.bind(this);
         this.colorChange = this.colorChange.bind(this);
         this.displayGearOptions = this.displayGearOptions.bind(this);
+        this.gearChange = this.gearChange.bind(this);
     }
 
     initialize(){
@@ -75,6 +75,7 @@ export default class PaintView {
             square.id = gear;
             square.style.backgroundImage = 'url("' + this.gearOptions[gear].icon + '")';
             square.style.backgroundSize = 'cover';
+            square.addEventListener('click', this.gearChange);
             GearOptionContainer.appendChild(square);
         }
     }
@@ -82,6 +83,11 @@ export default class PaintView {
     colorChange(event) {
         this.currentColor = this.colorOptions[event.toElement.id];
         this.displayCurrentColor();
+        this.addEventListener();
+    }
+
+    gearChange(event) {
+        this.currentGear = this.gearOptions[event.toElement.id];
         this.addEventListener();
     }
 
