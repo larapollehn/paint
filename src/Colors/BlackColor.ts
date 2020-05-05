@@ -1,4 +1,4 @@
-class BlackColor implements Color{
+class BlackColor implements IColor{
 
     name(): string {
         return "black";

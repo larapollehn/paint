@@ -5,5 +5,5 @@ export default interface Gear {
 
     finish(): void;
 
-    draw(color: Color);
+    draw(color: IColor);
 }

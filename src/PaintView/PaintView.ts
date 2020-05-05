@@ -6,7 +6,7 @@ import Brush from "../Gear/Brush";
 import Magenta from "../Colors/MagentaColor";
 
 export default class PaintView{
-   public currentColor: Color = Magenta;
+   public currentColor: IColor = Magenta;
    public currentGear: Gear = new Brush();
 
    constructor() {

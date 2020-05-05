@@ -3,7 +3,7 @@ import {CONTEXT} from "../Globals";
 
 export default class Brush implements Gear {
     painting: boolean = false;
-    currentColor: Color;
+    currentColor: IColor;
 
     constructor() {
         this.start = this.start.bind(this);
@@ -21,7 +21,7 @@ export default class Brush implements Gear {
         CONTEXT.beginPath();
     }
 
-    draw(color: Color) {
+    draw(color: IColor) {
         this.currentColor = color;
         const self = this;
         function toDraw(event) {
