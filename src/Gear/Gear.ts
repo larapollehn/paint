@@ -1,9 +1,19 @@
-export default interface Gear {
+import {Color} from "../Colors/Color";
+
+export default abstract class Gear {
     painting: boolean;
+    icon: any;
 
-    start(event): void;
+    protected constructor(icon) {
+        this.icon = icon;
+        this.start = this.start.bind(this);
+        this.finish = this.finish.bind(this);
+        this.draw = this.draw.bind(this);
+    }
 
-    finish(): void;
+    abstract start(event): void;
 
-    draw(color: IColor);
+    abstract finish(): void;
+
+    abstract draw(color: Color);
 }

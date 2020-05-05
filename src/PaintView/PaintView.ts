@@ -1,19 +1,24 @@
-import {CANVAS} from "../Globals";
+import {CANVAS, COLORS, DEFAULT_COLOR, DEFAULT_GEAR, GEARS} from "../Globals";
 import Gear from "../Gear/Gear";
 import Brush from "../Gear/Brush";
-import {COLORS} from "../Colors/Colors";
-import Black from "../Colors/BlackColor";
+import {Color} from "../Colors/Color";
 
 export default class PaintView {
-    public currentColor: IColor = Black;
-    public currentGear: Gear = new Brush();
+    public currentColor: Color = DEFAULT_COLOR;
+    public currentGear: Gear = DEFAULT_GEAR;
     public cache: Map<string, Function> = new Map();
-    public colorOptions: Map<string, IColor> = new Map<string, IColor>();
+    public colorOptions: Map<string, Color> = new Map<string, Color>();
+    public gearOptions: Map<string, Gear> = new Map<string, Gear>();
 
     constructor() {
         COLORS.forEach(color => {
-            this.colorOptions[color.id()] = color;
+            this.colorOptions[color.id] = color;
+        });
+
+        GEARS.forEach(gear => {
+            this.gearOptions[gear.constructor.name] = gear;
         })
+
         this.cache["oldStart"] = this.currentGear.start;
         this.cache['oldFinish'] = this.currentGear.finish;
         this.cache['oldDraw'] = this.currentGear.draw(this.currentColor);
@@ -21,12 +26,14 @@ export default class PaintView {
         this.addEventListener = this.addEventListener.bind(this);
         this.displayColorPallet = this.displayColorPallet.bind(this);
         this.colorChange = this.colorChange.bind(this);
+        this.displayGearOptions = this.displayGearOptions.bind(this);
     }
 
     initialize(){
         this.addEventListener();
         this.displayColorPallet();
         this.displayCurrentColor();
+        this.displayGearOptions();
     }
 
     addEventListener() {
@@ -45,7 +52,7 @@ export default class PaintView {
 
     displayCurrentColor() {
         const currentColorSquare = document.getElementById('currentColor');
-        currentColorSquare.style.backgroundColor = this.currentColor.rgbValue();
+        currentColorSquare.style.backgroundColor = this.currentColor.rgbValue;
     }
 
     displayColorPallet() {
@@ -53,10 +60,23 @@ export default class PaintView {
         for(let color in this.colorOptions){
             const square = document.createElement('div');
             square.classList.add('colorOptions');
-            square.style.backgroundColor = this.colorOptions[color].rgbValue();
-            square.id = this.colorOptions[color].id();
+            square.style.backgroundColor = this.colorOptions[color].rgbValue;
+            square.id = this.colorOptions[color].id;
             square.addEventListener('click', this.colorChange)
             colorOptionsContainer.appendChild(square);
+        }
+    }
+
+    displayGearOptions(){
+        const GearOptionContainer = document.getElementById('gearOptions');
+        for (let gear in this.gearOptions){
+            const square = document.createElement('div');
+            square.classList.add('gearOption');
+            square.id = gear;
+            square.style.backgroundImage = 'url("' + this.gearOptions[gear].icon + '")';
+            square.style.backgroundSize = 'cover';
+            console.log(this.gearOptions[gear].icon);
+            GearOptionContainer.appendChild(square);
         }
     }
 

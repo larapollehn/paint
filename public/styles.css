@@ -16,3 +16,9 @@
     float: left;
     margin-right: 5px;
 }
+
+.gearOption{
+    height: 30px;
+    width: 30px;
+    border: 1px solid black;
+}

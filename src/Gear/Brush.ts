@@ -1,14 +1,13 @@
 import Gear from "./Gear";
 import {CONTEXT} from "../Globals";
+import {Color} from "../Colors/Color";
 
-export default class Brush implements Gear {
+export default class Brush extends Gear {
     painting: boolean = false;
-    currentColor: IColor;
+    currentColor: Color;
 
-    constructor() {
-        this.start = this.start.bind(this);
-        this.finish = this.finish.bind(this);
-        this.draw = this.draw.bind(this);
+    constructor(icon) {
+        super(icon);
     }
 
     start(event): void {
@@ -21,20 +20,22 @@ export default class Brush implements Gear {
         CONTEXT.beginPath();
     }
 
-    draw(color: IColor) {
+    draw(color: Color) {
         this.currentColor = color;
         const self = this;
+
         function toDraw(event) {
             if (self.painting) {
                 CONTEXT.lineWidth = 4;
                 CONTEXT.lineCap = 'round';
                 CONTEXT.lineTo(event.clientX, event.clientY);
-                CONTEXT.strokeStyle = color.rgbValue();
+                CONTEXT.strokeStyle = color.rgbValue;
                 CONTEXT.stroke();
                 CONTEXT.beginPath();
                 CONTEXT.moveTo(event.clientX, event.clientY);
             }
         }
+
         return toDraw;
     }
 }
