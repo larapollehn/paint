@@ -5,6 +5,7 @@ import LinePen from "./Gear/LinePen";
 import Rectangle from "./Gear/Rectangle";
 import Triangle from "./Gear/Triangle";
 import DragRectangle from "./Gear/DragRectangle";
+import DragCircle from "./Gear/DragCircle";
 
 const CANVAS: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('myCanvas');
 const CONTEXT = CANVAS.getContext('2d');
@@ -19,7 +20,8 @@ export const GEARS = [
     new LinePen(),
     new Rectangle(),
     new Triangle(),
-    new DragRectangle()
+    new DragRectangle(),
+    new DragCircle()
 ];
 
 export const DEFAULT_COLOR = new Color("black", "rgb(0,0, 0)")
