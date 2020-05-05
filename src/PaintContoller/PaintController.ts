@@ -9,5 +9,6 @@ export default class PaintController{
 
     setup(){
         this.view.addEventListener();
+        this.view.displayColorPallet();
     }
 }
