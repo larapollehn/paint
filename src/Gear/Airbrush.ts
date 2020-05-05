@@ -1,19 +1,19 @@
 import Gear from "./Gear";
-import {CONTEXT} from "../Globals";
 import {Color} from "../Colors/Color";
-import brush_icon from '../../public/assets/icons/tools.png';
+import {CONTEXT} from "../Globals";
+import spray_icon from '../../public/assets/icons/spraycan.png';
 
-export default class Brush extends Gear {
+export default class Airbrush extends Gear{
     painting: boolean = false;
     currentColor: Color;
 
     constructor() {
-        super(brush_icon);
+        super(spray_icon);
     }
 
     start(event): void {
         this.painting = true;
-        this.draw(this.currentColor)(event);
+        this.draw(this.currentColor);
     }
 
     finish(): void {
@@ -22,12 +22,11 @@ export default class Brush extends Gear {
     }
 
     draw(color: Color) {
-        this.currentColor = color;
         const self = this;
-
+        this.currentColor = color;
         function toDraw(event) {
-            if (self.painting) {
-                CONTEXT.lineWidth = 4;
+            if (self.painting){
+                CONTEXT.lineWidth = 0.1;
                 CONTEXT.lineCap = 'round';
                 CONTEXT.lineTo(event.clientX, event.clientY);
                 CONTEXT.strokeStyle = color.rgbValue;
@@ -36,7 +35,10 @@ export default class Brush extends Gear {
                 CONTEXT.moveTo(event.clientX, event.clientY);
             }
         }
-
         return toDraw;
     }
+
+    airbrushEffect(x, y){
+    }
+
 }

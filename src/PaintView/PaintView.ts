@@ -30,10 +30,10 @@ export default class PaintView {
     }
 
     initialize(){
-        this.addEventListener();
         this.displayColorPallet();
         this.displayCurrentColor();
         this.displayGearOptions();
+        this.addEventListener();
     }
 
     addEventListener() {
@@ -75,7 +75,6 @@ export default class PaintView {
             square.id = gear;
             square.style.backgroundImage = 'url("' + this.gearOptions[gear].icon + '")';
             square.style.backgroundSize = 'cover';
-            console.log(this.gearOptions[gear].icon);
             GearOptionContainer.appendChild(square);
         }
     }

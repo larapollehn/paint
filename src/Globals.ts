@@ -1,16 +1,18 @@
 import Brush from "./Gear/Brush";
 import {Color} from "./Colors/Color";
-import brush_icon from '../public/assets/icons/tools.png'
+import Gear from "./Gear/Gear";
+import Airbrush from "./Gear/Airbrush";
 
 const CANVAS: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('myCanvas');
 const CONTEXT = CANVAS.getContext('2d');
 
 export {CANVAS, CONTEXT};
 
-export const DEFAULT_GEAR = new Brush(brush_icon);
+export const DEFAULT_GEAR = new Brush();
 
 export const GEARS = [
     DEFAULT_GEAR,
+    new Airbrush()
 ];
 
 export const DEFAULT_COLOR = new Color("black", "rgb(0,0, 0)")
