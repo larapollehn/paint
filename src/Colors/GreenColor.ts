@@ -1,13 +1,12 @@
 class GreenColor implements IColor{
 
-    name(): string {
+    id(): string {
         return "green";
     }
 
     rgbValue(): string {
-        return "rgb(0,255,0)";
+        return "rgb(0,128,0)";
     }
-
 }
 
 const Green: GreenColor = new GreenColor();

@@ -6,13 +6,13 @@ import Black from "../Colors/BlackColor";
 
 export default class PaintView {
     public currentColor: IColor = Black;
-    public colorOptions: Map<string, IColor> = new Map<string, IColor>();
     public currentGear: Gear = new Brush();
     public cache: Map<string, Function> = new Map();
+    public colorOptions: Map<string, IColor> = new Map<string, IColor>();
 
     constructor() {
         COLORS.forEach(color => {
-            this.colorOptions[color.name()] = color;
+            this.colorOptions[color.id()] = color;
         })
         this.cache["oldStart"] = this.currentGear.start;
         this.cache['oldFinish'] = this.currentGear.finish;
@@ -45,7 +45,7 @@ export default class PaintView {
 
     displayCurrentColor() {
         const currentColorSquare = document.getElementById('currentColor');
-        currentColorSquare.style.backgroundColor = this.currentColor.name();
+        currentColorSquare.style.backgroundColor = this.currentColor.rgbValue();
     }
 
     displayColorPallet() {
@@ -53,8 +53,8 @@ export default class PaintView {
         for(let color in this.colorOptions){
             const square = document.createElement('div');
             square.classList.add('colorOptions');
-            square.style.backgroundColor = this.colorOptions[color].name();
-            square.id = this.colorOptions[color].name();
+            square.style.backgroundColor = this.colorOptions[color].rgbValue();
+            square.id = this.colorOptions[color].id();
             square.addEventListener('click', this.colorChange)
             colorOptionsContainer.appendChild(square);
         }

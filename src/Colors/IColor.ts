@@ -1,4 +1,4 @@
 interface IColor {
-    name(): string;
+    id(): string;
     rgbValue(): string;
 }

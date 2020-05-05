@@ -1,6 +1,6 @@
 class YellowColor implements IColor{
 
-    name(): string {
+    id(): string {
         return "yellow";
     }
 

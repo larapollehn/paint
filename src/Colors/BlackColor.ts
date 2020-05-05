@@ -1,5 +1,5 @@
 class BlackColor implements IColor{
-    name(): string {
+    id(): string {
         return "black";
     }
 

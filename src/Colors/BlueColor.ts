@@ -1,11 +1,11 @@
 class BlueColor implements IColor{
 
-    name(): string {
+    id(): string {
         return "blue";
     }
 
     rgbValue(): string {
-        return "rgb(255,255,0)";
+        return "rgb(0,0,255)";
     }
 
 }

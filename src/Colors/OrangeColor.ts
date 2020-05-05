@@ -1,11 +1,11 @@
 class OrangeColor implements IColor{
 
-    name(): string {
+    id(): string {
         return "orange";
     }
 
     rgbValue(): string {
-        return "rgb(255,255,0)";
+        return "rgb(251,151,27)";
     }
 
 }

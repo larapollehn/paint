@@ -1,11 +1,11 @@
 class RedColor implements IColor{
 
-    name(): string {
+    id(): string {
         return "red";
     }
 
     rgbValue(): string {
-        return "rgb(255,255,0)";
+        return "rgb(255,0,0)";
     }
 
 }

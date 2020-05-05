@@ -1,6 +1,6 @@
 class MagentaColor implements IColor{
 
-    name(): string {
+    id(): string {
         return "magenta";
     }
 

@@ -1,11 +1,11 @@
 class BrownColor implements IColor{
 
-    name(): string {
+    id(): string {
         return "brown";
     }
 
     rgbValue(): string {
-        return "rgb(255,255,0)";
+        return "rgb(49,12,12)";
     }
 
 }

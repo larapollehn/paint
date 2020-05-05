@@ -29,7 +29,7 @@ export default class Brush implements Gear {
                 CONTEXT.lineWidth = 4;
                 CONTEXT.lineCap = 'round';
                 CONTEXT.lineTo(event.clientX, event.clientY);
-                CONTEXT.strokeStyle = color.name();
+                CONTEXT.strokeStyle = color.rgbValue();
                 CONTEXT.stroke();
                 CONTEXT.beginPath();
                 CONTEXT.moveTo(event.clientX, event.clientY);
