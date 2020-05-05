@@ -1,6 +1,7 @@
 import Gear from "./Gear";
 import {CONTEXT} from "../Globals";
 import {Color} from "../Colors/Color";
+// @ts-ignore
 import brush_icon from '../../public/assets/icons/tools.png';
 
 export default class Brush extends Gear {

@@ -1,6 +1,7 @@
 import {Color} from "../Colors/Color";
 import {CONTEXT} from "../Globals";
 import Gear from "./Gear";
+// @ts-ignore
 import line_icon from "../../public/assets/icons/line.png";
 import Point2D from "../Geo/Point2D";
 

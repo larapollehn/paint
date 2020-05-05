@@ -1,6 +1,7 @@
 import Gear from "./Gear";
 import {Color} from "../Colors/Color";
 import {CONTEXT} from "../Globals";
+// @ts-ignore
 import drag_arc from "../../public/assets/icons/drag_arc.png";
 import Point2D from "../Geo/Point2D";
 

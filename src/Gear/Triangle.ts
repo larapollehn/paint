@@ -1,6 +1,7 @@
 import Gear from "./Gear";
 import {Color} from "../Colors/Color";
 import {CONTEXT} from "../Globals";
+// @ts-ignore
 import triangle_icon from "../../public/assets/icons/triangle.png";
 
 export default class Triangle extends Gear{

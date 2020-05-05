@@ -1,6 +1,7 @@
 import Gear from "./Gear";
 import {Color} from "../Colors/Color";
 import {CONTEXT} from "../Globals";
+// @ts-ignore
 import spray_icon from '../../public/assets/icons/spraycan.png';
 
 export default class Airbrush extends Gear {
