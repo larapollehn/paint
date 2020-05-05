@@ -4,6 +4,7 @@ import Airbrush from "./Gear/Airbrush";
 import LinePen from "./Gear/LinePen";
 import Rectangle from "./Gear/Rectangle";
 import Triangle from "./Gear/Triangle";
+import DragRectangle from "./Gear/DragRectangle";
 
 const CANVAS: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('myCanvas');
 const CONTEXT = CANVAS.getContext('2d');
@@ -17,7 +18,8 @@ export const GEARS = [
     new Airbrush(),
     new LinePen(),
     new Rectangle(),
-    new Triangle()
+    new Triangle(),
+    new DragRectangle()
 ];
 
 export const DEFAULT_COLOR = new Color("black", "rgb(0,0, 0)")
