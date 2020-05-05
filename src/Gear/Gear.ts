@@ -13,7 +13,7 @@ export default abstract class Gear {
 
     abstract start(event): void;
 
-    abstract finish(): void;
+    abstract finish(event?): void;
 
     abstract draw(color: Color);
 }
