@@ -15,7 +15,7 @@ export default class Triangle extends Gear{
         CONTEXT.fillStyle = this.currentColor.rgbValue;
         CONTEXT.moveTo(event.clientX, event.clientY);
         CONTEXT.lineTo((event.clientX+50), event.clientY);
-        CONTEXT.lineTo((event.clientX+25) ,(event.clientY+50));
+        CONTEXT.lineTo((event.clientX+25) ,(event.clientY-50));
         CONTEXT.fill();
     }
 
