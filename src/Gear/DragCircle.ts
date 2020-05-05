@@ -27,8 +27,8 @@ export default class DragCircle extends Gear{
         const radius = Math.sqrt(Math.pow(event.clientX - this.startPoint.x, 2) + Math.pow(event.clientY - this.startPoint.y,2))/2
         CONTEXT.beginPath();
         CONTEXT.arc((event.clientX + this.startPoint.x)/2, (event.clientY + this.startPoint.y)/2, radius, 0, 2* Math.PI);
-        CONTEXT.strokeStyle = this.currentColor.rgbValue;
-        CONTEXT.stroke();
+        CONTEXT.fillStyle = this.currentColor.rgbValue;
+        CONTEXT.fill();
     }
 
     draw(): void {

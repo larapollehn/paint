@@ -26,11 +26,11 @@ export const GEARS = [
     new PaintBucket()
 ];
 
-export const DEFAULT_COLOR = new Color("black", "rgb(0,0, 0)")
+export const DEFAULT_COLOR = new Color("black", 0,0,0);
 
 export const COLORS = [
     DEFAULT_COLOR,
-    new Color('red', "rgb(255,0,0)"),
-    new Color('blue', "rgb(0,0,255)"),
-    new Color('green', "rgb(0,128,0)")
+    new Color('red', 255, 0, 0),
+    new Color('blue', 0, 0, 255),
+    new Color('green',0, 128, 0),
 ];

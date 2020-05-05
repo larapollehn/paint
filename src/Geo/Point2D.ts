@@ -19,12 +19,17 @@ export default class Point2D {
         return new RGB(data[0], data[1], data[2]);
     }
 
+    getRgbValue(color:RGB): string{
+        return `rgb(${color.R}, ${color.G}, ${color.B})`
+    }
+
     set color(color: RGB) {
         const pixel = CONTEXT.createImageData(1, 1);
         let data = pixel.data;
         data[0] = color.R;
         data[1] = color.G;
         data[2] = color.B;
+        data[3] = 255;
         CONTEXT.putImageData(pixel, this.x, this.y);
     }
 
