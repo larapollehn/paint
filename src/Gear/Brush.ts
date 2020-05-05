@@ -24,7 +24,6 @@ export default class Brush extends Gear {
     draw(color: Color) {
         this.currentColor = color;
         const self = this;
-
         function toDraw(event) {
             if (self.painting) {
                 CONTEXT.lineWidth = 4;
@@ -36,7 +35,6 @@ export default class Brush extends Gear {
                 CONTEXT.moveTo(event.clientX, event.clientY);
             }
         }
-
         return toDraw;
     }
 }
