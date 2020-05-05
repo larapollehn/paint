@@ -13,11 +13,22 @@ import Blue from "../Colors/BlueColor";
 
 export default class PaintView {
     public currentColor: IColor = Magenta;
-    public colorOptions: Array<IColor>;
+    public colorOptions: Map<string, IColor> = new Map<string, IColor>();
     public currentGear: Gear = new Brush();
 
     constructor() {
-        this.colorOptions = [Black, Blue, Magenta, Yellow, Green, Orange, Brown, Red];
+        this.colorOptions.set('black', Black);
+        this.colorOptions.set('red', Red);
+        this.colorOptions.set('yellow', Yellow);
+        this.colorOptions.set('green', Green);
+        this.colorOptions.set('brown', Brown);
+        this.colorOptions.set('blue', Blue);
+        this.colorOptions.set('orange', Orange);
+        this.colorOptions.set('magenta', Magenta);
+
+        this.addEventListener = this.addEventListener.bind(this);
+        this.displayColorPallet = this.displayColorPallet.bind(this);
+        this.colorChange = this.colorChange.bind(this);
     }
 
     addEventListener() {
@@ -26,10 +37,12 @@ export default class PaintView {
         CANVAS.addEventListener('mousemove', this.currentGear.draw(this.currentColor));
     }
 
-    displayColorPallet(){
+    displayCurrentColor(){
         const currentColorSquare = document.getElementById('currentColor');
         currentColorSquare.style.backgroundColor = this.currentColor.name();
+    }
 
+    displayColorPallet(){
         const colorOptionsContainer = document.getElementById('colorOptions');
         this.colorOptions.forEach(color =>{
             const square = document.createElement('div');
@@ -42,7 +55,8 @@ export default class PaintView {
     }
 
     colorChange(event){
-        console.log(event.toElement.id);
+        this.currentColor = this.colorOptions.get(event.toElement.id)
+        this.displayCurrentColor();
     }
 
 }
