@@ -1,23 +1,17 @@
 import {CANVAS} from "../Globals";
 import Gear from "../Gear/Gear";
 import Brush from "../Gear/Brush";
+import {COLORS} from "../Colors/Colors";
 import Black from "../Colors/BlackColor";
-import Magenta from "../Colors/MagentaColor";
-import Yellow from "../Colors/YellowColor";
-import Green from "../Colors/GreenColor";
-import Orange from "../Colors/OrangeColor";
-import Red from "../Colors/RedColor";
-import Brown from "../Colors/BrownColor";
-import Blue from "../Colors/BlueColor";
 
 export default class PaintView {
-    public currentColor: IColor = Magenta;
+    public currentColor: IColor = Black;
     public colorOptions: Map<string, IColor> = new Map<string, IColor>();
     public currentGear: Gear = new Brush();
     public cache: Map<string, Function> = new Map();
 
     constructor() {
-        [Black, Red, Yellow, Magenta, Green, Brown, Yellow, Orange, Blue].forEach(color => {
+        COLORS.forEach(color => {
             this.colorOptions[color.name()] = color;
         })
         this.cache["oldStart"] = this.currentGear.start;
