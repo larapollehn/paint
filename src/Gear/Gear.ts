@@ -11,9 +11,9 @@ export default abstract class Gear {
         this.draw = this.draw.bind(this);
     }
 
-    abstract start(event): void;
+    abstract start(event?: MouseEvent, color?: Color): void;
 
-    abstract finish(event?): void;
+    abstract finish(event?: MouseEvent, color?: Color): void;
 
-    abstract draw(color: Color);
+    abstract draw(event?: MouseEvent, color?: Color);
 }

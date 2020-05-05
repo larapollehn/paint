@@ -13,17 +13,17 @@ export default class Airbrush extends Gear{
         this.airbrushEffect = this.airbrushEffect.bind(this);
     }
 
-    start(event): void {
+    start(event, color): void {
         this.painting = true;
-        this.draw(this.currentColor);
+        this.draw(event, this.currentColor);
     }
 
-    finish(): void {
+    finish(event, color): void {
         this.painting = false;
         CONTEXT.beginPath();
     }
 
-    draw(color: Color) {
+    draw(event, color: Color) {
         const self = this;
         this.currentColor = color;
         function toDraw(event) {

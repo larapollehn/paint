@@ -16,7 +16,7 @@ export default class Brush extends Gear {
         this.draw(this.currentColor)(event);
     }
 
-    finish(): void {
+    finish(event): void {
         this.painting = false;
         CONTEXT.beginPath();
     }

@@ -41,8 +41,8 @@ export default class PaintView {
         CANVAS.removeEventListener('mouseup', this.cache['oldFinish']);
         CANVAS.removeEventListener('mousemove', this.cache['oldDraw']);
 
-        this.cache["oldStart"] = this.currentGear.start;
-        this.cache['oldFinish'] = this.currentGear.finish;
+        this.cache["oldStart"] = this.currentGear.start();
+        this.cache['oldFinish'] = this.currentGear.finish();
         this.cache['oldDraw'] = this.currentGear.draw(this.currentColor);
 
         CANVAS.addEventListener('mousedown',  this.cache["oldStart"])

@@ -6,6 +6,7 @@ import Rectangle from "./Gear/Rectangle";
 import Triangle from "./Gear/Triangle";
 import DragRectangle from "./Gear/DragRectangle";
 import DragCircle from "./Gear/DragCircle";
+import PaintBucket from "./Gear/PaintBucket";
 
 const CANVAS: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('myCanvas');
 const CONTEXT = CANVAS.getContext('2d');
@@ -21,7 +22,8 @@ export const GEARS = [
     new Rectangle(),
     new Triangle(),
     new DragRectangle(),
-    new DragCircle()
+    new DragCircle(),
+    new PaintBucket()
 ];
 
 export const DEFAULT_COLOR = new Color("black", "rgb(0,0, 0)")

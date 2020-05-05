@@ -15,7 +15,7 @@ export default class DragRectangle extends Gear{
         this.startPoint = [event.clientX, event.clientY];
     }
 
-    finish(event?): void {
+    finish(event): void {
         CONTEXT.beginPath();
         CONTEXT.fillStyle = this.currentColor.rgbValue;
         CONTEXT.moveTo(this.startPoint[0], this.startPoint[1]);

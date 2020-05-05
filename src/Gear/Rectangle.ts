@@ -16,7 +16,7 @@ export default class Rectangle extends Gear{
         CONTEXT.fillRect(event.clientX, event.clientY, 20, 20);
     }
 
-    finish(event?): void {
+    finish(event): void {
     }
 
     draw(color: Color) {
