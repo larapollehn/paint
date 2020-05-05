@@ -10,7 +10,7 @@ export default class PaintBucket extends Gear {
         super(line_icon);
     }
 
-    start(event, color): void {
+    start(color): void {
         let fillColor: Color;
 
         let point: Point2D = new Point2D(event.clientX, event.clientY);

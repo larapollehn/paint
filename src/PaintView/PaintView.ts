@@ -18,9 +18,9 @@ export default class PaintView {
             this.gearOptions[gear.constructor.name] = gear;
         })
 
-        this.cache["oldStart"] = this.currentGear.start;
+        this.cache["oldStart"] = this.currentGear.start(this.currentColor);
         this.cache['oldFinish'] = this.currentGear.finish;
-        this.cache['oldDraw'] = this.currentGear.draw(this.currentColor);
+        this.cache['oldDraw'] = this.currentGear.draw;
 
         this.addEventListener = this.addEventListener.bind(this);
         this.displayColorPallet = this.displayColorPallet.bind(this);
@@ -41,9 +41,9 @@ export default class PaintView {
         CANVAS.removeEventListener('mouseup', this.cache['oldFinish']);
         CANVAS.removeEventListener('mousemove', this.cache['oldDraw']);
 
-        this.cache["oldStart"] = this.currentGear.start();
-        this.cache['oldFinish'] = this.currentGear.finish();
-        this.cache['oldDraw'] = this.currentGear.draw(this.currentColor);
+        this.cache["oldStart"] = this.currentGear.start(this.currentColor);
+        this.cache['oldFinish'] = this.currentGear.finish;
+        this.cache['oldDraw'] = this.currentGear.draw;
 
         CANVAS.addEventListener('mousedown',  this.cache["oldStart"])
         CANVAS.addEventListener('mouseup', this.cache['oldFinish']);
