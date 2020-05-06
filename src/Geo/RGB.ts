@@ -16,4 +16,11 @@ export default class RGB{
         this.G = G;
         this.B = B;
     }
+
+    compareTo(rgb: RGB): boolean{
+        return this.R === rgb.R && this.G === rgb.G && this.B === rgb.B && this.A === rgb.A;
+    }
+    get rgbValue(): string{
+        return `rgb(${this.R}, ${this.G}, ${this.B})`;
+    }
 }

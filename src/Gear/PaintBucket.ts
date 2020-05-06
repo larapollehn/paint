@@ -15,41 +15,28 @@ export default class PaintBucket extends Gear {
         function startDrawing(event) {
             let fillColor: RGB = color.getRGB();
 
-            let point: Point2D = new Point2D(event.clientX, event.clientY);
-            let startColor = point.color;
-            let startColorValue = point.getRgbValue(startColor);
+            let startPoint: Point2D = new Point2D(event.clientX, event.clientY);
+            let startColor: RGB = startPoint.color;
 
-            let neighbors = new Array<Point2D>();
-            let neighborsSet = new Set<Point2D>();
-            neighbors.push(point);
-            neighborsSet.add(point);
+            let neighborsQueue = new Array<Point2D>();
+            let seenNeighbors = new Set<Point2D>();
+            neighborsQueue.push(startPoint);
 
-            let i = 10000;
-            while (i > 0) {
-                const currentPoint: Point2D = neighbors.shift();
-
-                const topNeighbor: Point2D = new Point2D(currentPoint.x, currentPoint.y - 1);
-                const bottomNeighbor: Point2D = new Point2D(currentPoint.x, currentPoint.y + 1);
-                const rightNeighbor: Point2D = new Point2D(currentPoint.x + 1, currentPoint.y);
-                const leftNeighbor: Point2D = new Point2D(currentPoint.x - 1, currentPoint.y);
-                const diagonalLeftUpNeighbor: Point2D = new Point2D(currentPoint.x - 1, currentPoint.y - 1);
-                const diagonalLeftDownNeighbor: Point2D = new Point2D(currentPoint.x - 1, currentPoint.y + 1);
-                const diagonalRightUpNeighbor: Point2D = new Point2D(currentPoint.x + 1, currentPoint.y - 1);
-                const diagonalRightDownNeighbor: Point2D = new Point2D(currentPoint.x + 1, currentPoint.y - 1);
-
-                [topNeighbor, bottomNeighbor, rightNeighbor, leftNeighbor].forEach(neighbor => {
-                    if (neighbor.isValid() && neighbor.getRgbValue(neighbor.color) === startColorValue && !neighborsSet.has(neighbor)) {
-                        neighbors.push(neighbor);
-                        neighborsSet.add(neighbor);
+            while (neighborsQueue.length > 0) {
+                const currentPoint: Point2D = neighborsQueue.shift();
+                if(!seenNeighbors.has(currentPoint)) {
+                    if(currentPoint.color.compareTo(startColor)) {
+                        const topNeighbor: Point2D = new Point2D(currentPoint.x, currentPoint.y - 1);
+                        const bottomNeighbor: Point2D = new Point2D(currentPoint.x, currentPoint.y + 1);
+                        const rightNeighbor: Point2D = new Point2D(currentPoint.x + 1, currentPoint.y);
+                        const leftNeighbor: Point2D = new Point2D(currentPoint.x - 1, currentPoint.y);
+                        neighborsQueue.push(topNeighbor);
+                        neighborsQueue.push(bottomNeighbor);
+                        neighborsQueue.push(rightNeighbor);
+                        neighborsQueue.push(leftNeighbor);
+                        currentPoint.color = fillColor;
                     }
-                });
-                console.log(neighbors.length);
-
-                let before = Date.now();
-                currentPoint.color = fillColor;
-                let after = Date.now();
-                console.log('set color of currentPoint', after - before);
-                i--;
+                }
             }
         }
         return startDrawing;

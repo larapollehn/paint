@@ -27,13 +27,8 @@ export default class Point2D {
      * @param color is the RGB-Object holding the needed color-values
      */
     set color(color: RGB) {
-        const pixel = CONTEXT.createImageData(1, 1);
-        let data = pixel.data;
-        data[0] = color.R;
-        data[1] = color.G;
-        data[2] = color.B;
-        data[3] = 255;
-        CONTEXT.putImageData(pixel, this.x, this.y);
+        CONTEXT.fillStyle = color.rgbValue;
+        CONTEXT.fillRect(this.x, this.y, 1, 1);
     }
 
     /**

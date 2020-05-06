@@ -1,4 +1,4 @@
-import {CANVAS, COLORS, DEFAULT_COLOR, DEFAULT_GEAR, GEARS} from "../Globals";
+import {CANVAS, COLORS, CONTEXT, DEFAULT_COLOR, DEFAULT_GEAR, GEARS} from "../Globals";
 import Gear from "../Gear/Gear";
 import {Color} from "../Colors/Color";
 
@@ -35,6 +35,10 @@ export default class PaintView {
     }
 
     initialize(){
+        CONTEXT.beginPath();
+        CONTEXT.rect(0, 0, CANVAS.width, CANVAS.height);
+        CONTEXT.fillStyle = "rgb(255, 255, 255)";
+        CONTEXT.fill();
         this.displayColorPallet();
         this.displayCurrentColor();
         this.displayGearOptions();

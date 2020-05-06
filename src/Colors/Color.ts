@@ -32,4 +32,8 @@ export class Color {
     get rgbValue(): string{
         return `rgb(${this.R}, ${this.G}, ${this.B})`;
     }
+
+    compareTo(color: Color): boolean{
+        return this.R === color.R && this.G === color.G && this.B === color.B;
+    }
 }
