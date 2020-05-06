@@ -1,12 +1,12 @@
 import {CANVAS, COLORS, CONTEXT, DEFAULT_COLOR, DEFAULT_GEAR, GEARS} from "../Globals";
 import Gear from "../Gear/Gear";
-import {Color} from "../Colors/Color";
+import RGB from "../Geo/RGB";
 
 export default class PaintView {
-    public currentColor: Color = DEFAULT_COLOR;
+    public currentColor: RGB = DEFAULT_COLOR;
     public currentGear: Gear = DEFAULT_GEAR;
     public cache: Map<string, Function> = new Map();
-    public colorOptions: Map<string, Color> = new Map<string, Color>();
+    public colorOptions: Map<string, RGB> = new Map<string, RGB>();
     public gearOptions: Map<string, Gear> = new Map<string, Gear>();
 
     /**
@@ -16,7 +16,7 @@ export default class PaintView {
      */
     constructor() {
         COLORS.forEach(color => {
-            this.colorOptions[color.id] = color;
+            this.colorOptions[color.rgbValue] = color;
         });
 
         GEARS.forEach(gear => {
@@ -35,10 +35,6 @@ export default class PaintView {
     }
 
     initialize(){
-        CONTEXT.beginPath();
-        CONTEXT.rect(0, 0, CANVAS.width, CANVAS.height);
-        CONTEXT.fillStyle = "rgb(255, 255, 255)";
-        CONTEXT.fill();
         this.displayColorPallet();
         this.displayCurrentColor();
         this.displayGearOptions();
@@ -78,7 +74,7 @@ export default class PaintView {
             const square = document.createElement('div');
             square.classList.add('colorOptions');
             square.style.backgroundColor = this.colorOptions[color].rgbValue;
-            square.id = this.colorOptions[color].id;
+            square.id = this.colorOptions[color].rgbValue;
             square.addEventListener('click', this.colorChange)
             colorOptionsContainer.appendChild(square);
         }
@@ -107,7 +103,9 @@ export default class PaintView {
     }
 
     gearChange(event) {
+        this.currentGear.reset();
         this.currentGear = this.gearOptions[event.toElement.id];
+        this.currentGear.reset();
         this.addEventListener();
     }
 

@@ -1,5 +1,4 @@
 import Gear from "./Gear";
-import {Color} from "../Colors/Color";
 // @ts-ignore
 import rect_icon from "../../public/assets/icons/rect.png";
 import {CONTEXT} from "../Globals";
@@ -28,6 +27,6 @@ export default class Rectangle extends Gear{
     draw():void {
     }
 
-
-
+    reset() {
+    }
 }

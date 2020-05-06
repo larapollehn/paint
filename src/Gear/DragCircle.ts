@@ -1,13 +1,13 @@
 import Gear from "./Gear";
-import {Color} from "../Colors/Color";
 import {CONTEXT} from "../Globals";
 // @ts-ignore
 import drag_arc from "../../public/assets/icons/drag_arc.png";
 import Point2D from "../Geo/Point2D";
+import RGB from "../Geo/RGB";
 
 
 export default class DragCircle extends Gear{
-    currentColor: Color;
+    currentColor: RGB;
     startPoint: Point2D;
 
     constructor() {
@@ -36,5 +36,9 @@ export default class DragCircle extends Gear{
     }
 
     draw(): void {
+    }
+
+    reset() {
+        this.startPoint = null;
     }
 }

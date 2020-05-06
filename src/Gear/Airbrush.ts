@@ -1,12 +1,12 @@
 import Gear from "./Gear";
-import {Color} from "../Colors/Color";
 import {CONTEXT} from "../Globals";
 // @ts-ignore
 import spray_icon from '../../public/assets/icons/spraycan.png';
+import RGB from "../Geo/RGB";
 
 export default class Airbrush extends Gear {
     painting: boolean = false;
-    currentColor: Color;
+    currentColor: RGB;
 
     constructor() {
         super(spray_icon);
@@ -54,4 +54,7 @@ export default class Airbrush extends Gear {
         }
     }
 
+    reset() {
+        this.painting = false;
+    }
 }

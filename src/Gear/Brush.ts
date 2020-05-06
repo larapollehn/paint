@@ -1,12 +1,12 @@
 import Gear from "./Gear";
 import {CONTEXT} from "../Globals";
-import {Color} from "../Colors/Color";
 // @ts-ignore
 import brush_icon from '../../public/assets/icons/tools.png';
+import RGB from "../Geo/RGB";
 
 export default class Brush extends Gear {
     painting: boolean = false;
-    currentColor: Color;
+    currentColor: RGB;
 
     constructor() {
         super(brush_icon);
@@ -23,7 +23,6 @@ export default class Brush extends Gear {
     }
 
     finish(): void {
-        console.log('end');
         this.painting = false;
         CONTEXT.beginPath();
     }
@@ -38,5 +37,9 @@ export default class Brush extends Gear {
             CONTEXT.beginPath();
             CONTEXT.moveTo(event.clientX, event.clientY);
         }
+    }
+
+    reset() {
+        this.painting = false;
     }
 }

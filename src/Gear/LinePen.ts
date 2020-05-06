@@ -1,13 +1,13 @@
-import {Color} from "../Colors/Color";
 import {CONTEXT} from "../Globals";
 import Gear from "./Gear";
 // @ts-ignore
 import line_icon from "../../public/assets/icons/line.png";
 import Point2D from "../Geo/Point2D";
+import RGB from "../Geo/RGB";
 
 export default class LinePen extends Gear {
     painting: boolean = false;
-    currentColor: Color;
+    currentColor: RGB;
     startPoint: Point2D;
 
     constructor() {
@@ -48,5 +48,11 @@ export default class LinePen extends Gear {
     }
 
     draw() {
+    }
+
+    reset() {
+        this.painting = false;
+        this.startPoint = null;
+        this.currentColor = null;
     }
 }

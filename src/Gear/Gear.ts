@@ -1,7 +1,6 @@
-import {Color} from "../Colors/Color";
+import RGB from "../Geo/RGB";
 
 export default abstract class Gear {
-    painting: boolean;
     icon: any;
 
     protected constructor(icon) {
@@ -11,9 +10,11 @@ export default abstract class Gear {
         this.draw = this.draw.bind(this);
     }
 
-    abstract start(color?: Color): Function;
+    abstract start(color?: RGB): Function;
 
     abstract finish(event?): void;
 
     abstract draw(event?): void | Function;
+
+    abstract reset();
 }

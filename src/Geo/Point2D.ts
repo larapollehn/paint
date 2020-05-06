@@ -18,7 +18,7 @@ export default class Point2D {
         return new RGB(data[0], data[1], data[2]);
     }
 
-    getRgbValue(color:RGB): string{
+    getRgbValue(color: RGB): string {
         return `rgb(${color.R}, ${color.G}, ${color.B})`
     }
 
