@@ -1,3 +1,9 @@
+/**
+ * represents a RGB-Color
+ * R = red
+ * G = green
+ * B = blue
+ */
 export default class RGB{
     public readonly R: number;
     public readonly G: number;

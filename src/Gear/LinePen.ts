@@ -14,6 +14,11 @@ export default class LinePen extends Gear {
         super(line_icon);
     }
 
+    /**
+     * sets startPoint and startColor and painting
+     * draws a "dot" at the Position of startPoint
+     * @param color
+     */
     start(color): Function {
         const self = this;
         function startDrawing(event) {
@@ -26,6 +31,11 @@ export default class LinePen extends Gear {
         return startDrawing;
     }
 
+    /**
+     * connects the startPoint with the current Position of the mouse-cursor
+     * draws a Line between them
+     * @param event holds the current Position of the mouse-cursor
+     */
     finish(event): void {
         this.painting = false;
         CONTEXT.beginPath();

@@ -9,6 +9,11 @@ export default class PaintView {
     public colorOptions: Map<string, Color> = new Map<string, Color>();
     public gearOptions: Map<string, Gear> = new Map<string, Gear>();
 
+    /**
+     * sets the colorOptions based on the globaly set Colors
+     * sets the gearOptions based on the globaly set Gears
+     * fills the cache with the current methods of start, finish and draw
+     */
     constructor() {
         COLORS.forEach(color => {
             this.colorOptions[color.id] = color;
@@ -36,6 +41,11 @@ export default class PaintView {
         this.addEventListener();
     }
 
+    /**
+     * removes the old EventListeners
+     * puts new methods of start, finish and draw in the cache, by overriding the old ones
+     * adds new EventListener with the current parameter for Color
+     */
     addEventListener() {
         CANVAS.removeEventListener("mousedown", this.cache["oldStart"]);
         CANVAS.removeEventListener('mouseup', this.cache['oldFinish']);
@@ -55,6 +65,9 @@ export default class PaintView {
         currentColorSquare.style.backgroundColor = this.currentColor.rgbValue;
     }
 
+    /**
+     * creates an HTML-Div for each Color of the globally set colors and fills it accordingly
+     */
     displayColorPallet() {
         const colorOptionsContainer = document.getElementById('colorOptions');
         for(let color in this.colorOptions){
@@ -67,6 +80,9 @@ export default class PaintView {
         }
     }
 
+    /**
+     * creates an HTML-Div for each Gear of the globally set gears and displays the specific icon
+     */
     displayGearOptions(){
         const GearOptionContainer = document.getElementById('gearOptions');
         for (let gear in this.gearOptions){

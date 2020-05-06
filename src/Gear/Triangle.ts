@@ -9,6 +9,10 @@ export default class Triangle extends Gear{
         super(triangle_icon);
     }
 
+    /**
+     * draws a triangle at the current position of the mouse-cursor
+     * @param color sets the color of the drawn triangle
+     */
     start(color): Function {
         function startDrawing(event){
             CONTEXT.beginPath();

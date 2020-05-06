@@ -9,6 +9,10 @@ export default class Rectangle extends Gear{
         super(rect_icon);
     }
 
+    /**
+     * draws a rectangle on the canvas at the current Position of the mouse-cursor
+     * @param color sets the color of the drawn rectangle
+     */
     start(color): Function {
         function startDrawing(event){
             CONTEXT.beginPath();

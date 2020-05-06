@@ -23,6 +23,10 @@ export default class DragCircle extends Gear{
         return startDrawing;
     }
 
+    /**
+     * draws a circle between the startPoint an the current mouse-cursor-Position of event
+     * @param event holds the current position of the mouse-cursor
+     */
     finish(event): void {
         const radius = Math.sqrt(Math.pow(event.clientX - this.startPoint.x, 2) + Math.pow(event.clientY - this.startPoint.y,2))/2
         CONTEXT.beginPath();

@@ -22,6 +22,11 @@ export default class DragRectangle extends Gear{
         return startDrawing;
     }
 
+    /**
+     * draws a filled rectangle, with the startPoint and current Position of the mouse-cursor
+     * as opposite corners
+     * @param event holds the current position of the mouse-cursor
+     */
     finish(event): void {
         CONTEXT.beginPath();
         CONTEXT.fillStyle = this.currentColor.rgbValue;

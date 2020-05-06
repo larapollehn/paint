@@ -10,7 +10,6 @@ export default class Airbrush extends Gear {
 
     constructor() {
         super(spray_icon);
-
         this.airbrushEffect = this.airbrushEffect.bind(this);
     }
 
@@ -42,6 +41,11 @@ export default class Airbrush extends Gear {
 
     }
 
+    /**
+     * creates an airbrush-effect based on a random distribution of colored short lines
+     * @param x is the position of the mouse-cursor on the x-axis
+     * @param y is the position of the mouse-cursor on the y-axis
+     */
     airbrushEffect(x, y) {
         for (let i = 0; i < 50; i++) {
             const randomPosX = Math.floor(Math.random() * Math.floor(20))
