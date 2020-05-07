@@ -19,27 +19,33 @@ export default class Airbrush extends Gear {
         function startDrawing(event) {
             self.currentColor = color;
             self.painting = true;
-            self.draw(event);
         }
         return startDrawing;
     }
 
-    finish(color): void {
-        this.painting = false;
-        CONTEXT.beginPath();
+    finish(color): Function {
+        const self = this;
+        function finishDrawing() {
+            self.painting = false;
+            CONTEXT.beginPath();
+        }
+        return finishDrawing;
     }
 
-    draw(event) {
-        if (this.painting) {
-            CONTEXT.lineWidth = 0.1;
-            CONTEXT.lineCap = 'round';
-            this.airbrushEffect(event.clientX, event.clientY);
-            CONTEXT.strokeStyle = this.currentColor.rgbValue;
-            CONTEXT.stroke();
-            CONTEXT.beginPath();
-            this.airbrushEffect(event.clientX, event.clientY);
+    draw() {
+        const self = this;
+        function toDraw(event) {
+            if (self.painting) {
+                CONTEXT.lineWidth = 0.1;
+                CONTEXT.lineCap = 'round';
+                self.airbrushEffect(event.clientX-20, event.clientY-20);
+                CONTEXT.strokeStyle = self.currentColor.rgbValue;
+                CONTEXT.stroke();
+                CONTEXT.beginPath();
+                self.airbrushEffect(event.clientX-20, event.clientY-20);
+            }
         }
-
+        return toDraw;
     }
 
     /**

@@ -10,11 +10,11 @@ export default abstract class Gear {
         this.draw = this.draw.bind(this);
     }
 
-    abstract start(color?: RGB): Function;
+    abstract start(color?: RGB, lineWidth?): Function;
 
-    abstract finish(event?): void;
+    abstract finish(lineWidth?): void | Function;
 
-    abstract draw(event?): void | Function;
+    abstract draw(lineWidth?): void | Function;
 
     abstract reset();
 }

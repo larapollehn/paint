@@ -27,16 +27,20 @@ export default class DragRectangle extends Gear{
      * as opposite corners
      * @param event holds the current position of the mouse-cursor
      */
-    finish(event): void {
-        CONTEXT.beginPath();
-        CONTEXT.fillStyle = this.currentColor.rgbValue;
-        CONTEXT.moveTo(this.startPoint.x, this.startPoint.y);
-        CONTEXT.lineTo(event.clientX, this.startPoint.y);
-        CONTEXT.lineTo(this.startPoint.x, event.clientY);
-        CONTEXT.moveTo(event.clientX, event.clientY);
-        CONTEXT.lineTo(event.clientX, this.startPoint.y);
-        CONTEXT.lineTo(this.startPoint.x, event.clientY);
-        CONTEXT.fill();
+    finish(): Function {
+        const self = this;
+        function finishDrawing(event){
+            CONTEXT.beginPath();
+            CONTEXT.fillStyle = self.currentColor.rgbValue;
+            CONTEXT.moveTo(self.startPoint.x, self.startPoint.y);
+            CONTEXT.lineTo(event.clientX, self.startPoint.y);
+            CONTEXT.lineTo(self.startPoint.x, event.clientY);
+            CONTEXT.moveTo(event.clientX, event.clientY);
+            CONTEXT.lineTo(event.clientX, self.startPoint.y);
+            CONTEXT.lineTo(self.startPoint.x, event.clientY);
+            CONTEXT.fill();
+        }
+        return finishDrawing;
     }
 
     draw() {

@@ -36,15 +36,19 @@ export default class LinePen extends Gear {
      * draws a Line between them
      * @param event holds the current Position of the mouse-cursor
      */
-    finish(event): void {
-        this.painting = false;
-        CONTEXT.beginPath();
-        CONTEXT.lineWidth = 4;
-        CONTEXT.lineCap = 'round';
-        CONTEXT.moveTo(this.startPoint.x, this.startPoint.y);
-        CONTEXT.lineTo(event.clientX, event.clientY);
-        CONTEXT.strokeStyle = this.currentColor.rgbValue;
-        CONTEXT.stroke();
+    finish(event): Function {
+        const self = this;
+        function finishDrawing(event) {
+            self.painting = false;
+            CONTEXT.beginPath();
+            CONTEXT.lineWidth = 4;
+            CONTEXT.lineCap = 'round';
+            CONTEXT.moveTo(self.startPoint.x, self.startPoint.y);
+            CONTEXT.lineTo(event.clientX, event.clientY);
+            CONTEXT.strokeStyle = self.currentColor.rgbValue;
+            CONTEXT.stroke();
+        }
+        return finishDrawing;
     }
 
     draw() {

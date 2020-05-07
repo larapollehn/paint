@@ -13,32 +13,39 @@ export default class Brush extends Gear {
         super(brush_icon);
     }
 
-    start(color): Function {
+    start(color, lineWidth): Function {
         CONTEXT.beginPath();
         const self = this;
         function startDrawing(event) {
             self.currentColor = color;
             self.painting = true;
-            self.draw(event);
         }
         return startDrawing;
     }
 
-    finish(): void {
-        this.painting = false;
-        CONTEXT.beginPath();
+    finish(): Function {
+        const self = this;
+        function finishDrawing() {
+            self.painting = false;
+            CONTEXT.beginPath();
+        }
+        return finishDrawing;
     }
 
-    draw(event) {
-        if (this.painting) {
-            CONTEXT.lineWidth = 4;
-            CONTEXT.lineCap = 'round';
-            CONTEXT.lineTo(event.clientX, event.clientY);
-            CONTEXT.strokeStyle = this.currentColor.rgbValue;
-            CONTEXT.stroke();
-            CONTEXT.beginPath();
-            CONTEXT.moveTo(event.clientX, event.clientY);
+    draw(lineWidth): Function {
+        const self = this;
+        function toDraw(event) {
+            if (self.painting) {
+                CONTEXT.lineWidth = lineWidth;
+                CONTEXT.lineCap = 'round';
+                CONTEXT.lineTo(event.clientX, event.clientY);
+                CONTEXT.strokeStyle = self.currentColor.rgbValue;
+                CONTEXT.stroke();
+                CONTEXT.beginPath();
+                CONTEXT.moveTo(event.clientX, event.clientY);
+            }
         }
+        return toDraw;
     }
 
     reset() {

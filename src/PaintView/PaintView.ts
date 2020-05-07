@@ -5,6 +5,7 @@ import RGB from "../Geo/RGB";
 export default class PaintView {
     public currentColor: RGB = DEFAULT_COLOR;
     public currentGear: Gear = DEFAULT_GEAR;
+    public currentLineWidth: number = 4;
     public cache: Map<string, Function> = new Map();
     public colorOptions: Map<string, RGB> = new Map<string, RGB>();
     public gearOptions: Map<string, Gear> = new Map<string, Gear>();
@@ -23,9 +24,9 @@ export default class PaintView {
             this.gearOptions[gear.constructor.name] = gear;
         })
 
-        this.cache["oldStart"] = this.currentGear.start(this.currentColor);
-        this.cache['oldFinish'] = this.currentGear.finish;
-        this.cache['oldDraw'] = this.currentGear.draw;
+        this.cache["oldStart"] = this.currentGear.start(this.currentColor, this.currentLineWidth);
+        this.cache['oldFinish'] = this.currentGear.finish(this.currentLineWidth);
+        this.cache['oldDraw'] = this.currentGear.draw(this.currentLineWidth);
 
         this.addEventListener = this.addEventListener.bind(this);
         this.displayColorPallet = this.displayColorPallet.bind(this);
@@ -52,9 +53,9 @@ export default class PaintView {
         CANVAS.removeEventListener('mouseup', this.cache['oldFinish']);
         CANVAS.removeEventListener('mousemove', this.cache['oldDraw']);
 
-        this.cache["oldStart"] = this.currentGear.start(this.currentColor);
-        this.cache['oldFinish'] = this.currentGear.finish;
-        this.cache['oldDraw'] = this.currentGear.draw;
+        this.cache["oldStart"] = this.currentGear.start(this.currentColor, this.currentLineWidth);
+        this.cache['oldFinish'] = this.currentGear.finish(this.currentLineWidth);
+        this.cache['oldDraw'] = this.currentGear.draw(this.currentLineWidth);
 
         CANVAS.addEventListener('mousedown',  this.cache["oldStart"])
         CANVAS.addEventListener('mouseup', this.cache['oldFinish']);
