@@ -1,15 +1,18 @@
 import Gear from "./Gear";
+import ParameterList from "../Parameters";
+import RGB from "../Geo/RGB";
 import {CONTEXT} from "../Globals";
 // @ts-ignore
-import brush_icon from '../../public/assets/icons/tools.png';
-import RGB from "../Geo/RGB";
+import eraser_icon from "../../public/assets/icons/eraser.png";
 
-export default class Brush extends Gear {
+export default class Eraser extends Gear{
     painting: boolean = false;
+    color: RGB = new RGB(255,255,255);
 
     constructor() {
-        super(brush_icon);
+        super(eraser_icon);
     }
+
 
     start(): Function {
         CONTEXT.beginPath();
@@ -29,14 +32,14 @@ export default class Brush extends Gear {
         return finishDrawing;
     }
 
-    draw(parameterList): Function {
+    draw(parameterList: ParameterList): void | Function {
         const self = this;
         function toDraw(event) {
             if (self.painting) {
-                CONTEXT.lineWidth = parameterList.lineWidth.width;
-                CONTEXT.lineCap = 'round';
+                CONTEXT.lineWidth = parameterList.lineWidth.width*2;
+                CONTEXT.lineCap = 'square';
                 CONTEXT.lineTo(event.clientX, event.clientY);
-                CONTEXT.strokeStyle = parameterList.color.rgbValue;
+                CONTEXT.strokeStyle = self.color.rgbValue;
                 CONTEXT.stroke();
                 CONTEXT.beginPath();
                 CONTEXT.moveTo(event.clientX, event.clientY);

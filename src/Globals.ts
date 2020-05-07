@@ -8,6 +8,7 @@ import DragCircle from "./Gear/DragCircle";
 import PaintBucket from "./Gear/PaintBucket";
 import RGB from "./Geo/RGB";
 import LineWidth from "./Geo/LineWidth";
+import Eraser from "./Gear/Eraser";
 
 const CANVAS: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('myCanvas');
 const CONTEXT = CANVAS.getContext('2d');
@@ -23,7 +24,8 @@ export const GEARS = [
     new Rectangle(),
     new Triangle(),
     new DragRectangle(),
-    new DragCircle()
+    new DragCircle(),
+    new Eraser()
 ];
 
 export const DEFAULT_COLOR = new RGB( 0,0,0);

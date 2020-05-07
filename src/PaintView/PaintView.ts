@@ -50,6 +50,7 @@ export default class PaintView {
         this.displayGearOptions();
         this.displayCurrentGear();
         this.displayLineWidthOptions();
+        this.displayCurrentLineWidth();
         this.addEventListener();
     }
 
@@ -114,6 +115,11 @@ export default class PaintView {
         }
     }
 
+    displayCurrentLineWidth(){
+        const CurrentLineWidthSquare = document.getElementById('currentLineWidth');
+        CurrentLineWidthSquare.innerText = `${this.currentLineWidth.width}`;
+    }
+
     displayLineWidthOptions(){
         const LineWidthOptionsContainer = document.getElementById('lineWidthOptions');
         for (let option in this.lineWidthOptions){
@@ -144,6 +150,7 @@ export default class PaintView {
     changeLineWidth(event){
         this.currentLineWidth = this.lineWidthOptions[event.toElement.id];
         this.ParameterList.lineWidth = this.lineWidthOptions[event.toElement.id];
+        this.displayCurrentLineWidth();
         this.addEventListener();
     }
 
