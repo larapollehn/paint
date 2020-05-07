@@ -15,7 +15,7 @@ export default class Triangle extends Gear{
      */
     start(parameterList: ParameterList): Function {
         const leftDrift = (((parameterList.lineWidth.width*10)+10)/2);
-        const rightDrift = ((parameterList.lineWidth.width*10)+10))
+        const rightDrift = ((parameterList.lineWidth.width*10)+10);
         function startDrawing(event){
             CONTEXT.beginPath();
             CONTEXT.fillStyle = parameterList.color.rgbValue;
