@@ -3,6 +3,7 @@ import {CONTEXT} from "../Globals";
 // @ts-ignore
 import brush_icon from '../../public/assets/icons/tools.png';
 import RGB from "../Geo/RGB";
+import Point2D from "../Geo/Point2D";
 
 export default class Brush extends Gear {
     painting: boolean = false;
@@ -13,6 +14,7 @@ export default class Brush extends Gear {
     }
 
     start(color): Function {
+        CONTEXT.beginPath();
         const self = this;
         function startDrawing(event) {
             self.currentColor = color;

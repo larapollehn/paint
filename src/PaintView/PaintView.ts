@@ -38,6 +38,7 @@ export default class PaintView {
         this.displayColorPallet();
         this.displayCurrentColor();
         this.displayGearOptions();
+        this.displayCurrentGear();
         this.addEventListener();
     }
 
@@ -80,6 +81,12 @@ export default class PaintView {
         }
     }
 
+    displayCurrentGear(){
+        const currentGearSquare = document.getElementById('currentGear');
+        currentGearSquare.style.backgroundImage = 'url("' + this.currentGear.icon + '")';
+        currentGearSquare.style.backgroundSize = 'cover';
+    }
+
     /**
      * creates an HTML-Div for each Gear of the globally set gears and displays the specific icon
      */
@@ -106,6 +113,7 @@ export default class PaintView {
         this.currentGear.reset();
         this.currentGear = this.gearOptions[event.toElement.id];
         this.currentGear.reset();
+        this.displayCurrentGear();
         this.addEventListener();
     }
 

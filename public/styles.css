@@ -5,6 +5,8 @@
 
 #myCanvas{
     border: 1px solid grey;
+    margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .currentColor{

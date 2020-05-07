@@ -14,6 +14,7 @@ export default class Airbrush extends Gear {
     }
 
     start(color): Function {
+        CONTEXT.beginPath();
         const self = this;
         function startDrawing(event) {
             self.currentColor = color;
