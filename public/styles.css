@@ -31,3 +31,16 @@
     float: left;
     margin-right: 5px;
 }
+
+.lineWidthOptions{
+    height: 20px;
+    width: 20px;
+    border: 1px solid black;
+    border-radius: 25%;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.lineWidthOptions:hover {
+    background-color: grey;
+}

@@ -1,4 +1,6 @@
 import RGB from "../Geo/RGB";
+import LineWidth from "../Geo/LineWidth";
+import ParameterList from "../Parameters";
 
 export default abstract class Gear {
     icon: any;
@@ -10,7 +12,7 @@ export default abstract class Gear {
         this.draw = this.draw.bind(this);
     }
 
-    abstract start(color?: RGB, lineWidth?): Function;
+    abstract start(parameters:ParameterList): Function;
 
     abstract finish(lineWidth?): void | Function;
 

@@ -3,7 +3,6 @@ import {CONTEXT} from "../Globals";
 // @ts-ignore
 import brush_icon from '../../public/assets/icons/tools.png';
 import RGB from "../Geo/RGB";
-import Point2D from "../Geo/Point2D";
 
 export default class Brush extends Gear {
     painting: boolean = false;
@@ -13,11 +12,12 @@ export default class Brush extends Gear {
         super(brush_icon);
     }
 
-    start(color, lineWidth): Function {
+    start(parameterList): Function {
+        console.log(parameterList);
         CONTEXT.beginPath();
         const self = this;
         function startDrawing(event) {
-            self.currentColor = color;
+            self.currentColor = parameterList.color;
             self.painting = true;
         }
         return startDrawing;
@@ -32,11 +32,11 @@ export default class Brush extends Gear {
         return finishDrawing;
     }
 
-    draw(lineWidth): Function {
+    draw(parameterList): Function {
         const self = this;
         function toDraw(event) {
             if (self.painting) {
-                CONTEXT.lineWidth = lineWidth;
+                CONTEXT.lineWidth = parameterList.lineWidth.width;
                 CONTEXT.lineCap = 'round';
                 CONTEXT.lineTo(event.clientX, event.clientY);
                 CONTEXT.strokeStyle = self.currentColor.rgbValue;

@@ -7,6 +7,7 @@ import DragRectangle from "./Gear/DragRectangle";
 import DragCircle from "./Gear/DragCircle";
 import PaintBucket from "./Gear/PaintBucket";
 import RGB from "./Geo/RGB";
+import LineWidth from "./Geo/LineWidth";
 
 const CANVAS: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('myCanvas');
 const CONTEXT = CANVAS.getContext('2d');
@@ -22,8 +23,7 @@ export const GEARS = [
     new Rectangle(),
     new Triangle(),
     new DragRectangle(),
-    new DragCircle(),
-    new PaintBucket()
+    new DragCircle()
 ];
 
 export const DEFAULT_COLOR = new RGB( 0,0,0);
@@ -33,4 +33,15 @@ export const COLORS = [
     new RGB(255, 0, 0),
     new RGB(0, 0, 255),
     new RGB(0, 128, 0),
+];
+
+export const DEFAULT_LINE_WIDTH = new LineWidth(4);
+
+export const LINE_WIDTHS = [
+    new LineWidth(2),
+    DEFAULT_LINE_WIDTH,
+    new LineWidth(6),
+    new LineWidth(8),
+    new LineWidth(10),
+    new LineWidth(12)
 ];

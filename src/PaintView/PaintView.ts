@@ -1,14 +1,18 @@
-import {CANVAS, COLORS, CONTEXT, DEFAULT_COLOR, DEFAULT_GEAR, GEARS} from "../Globals";
+import {CANVAS, COLORS, DEFAULT_COLOR, DEFAULT_GEAR, DEFAULT_LINE_WIDTH, GEARS, LINE_WIDTHS} from "../Globals";
 import Gear from "../Gear/Gear";
 import RGB from "../Geo/RGB";
+import LineWidth from "../Geo/LineWidth";
+import ParameterList from "../Parameters";
 
 export default class PaintView {
     public currentColor: RGB = DEFAULT_COLOR;
     public currentGear: Gear = DEFAULT_GEAR;
-    public currentLineWidth: number = 4;
+    public currentLineWidth: LineWidth = DEFAULT_LINE_WIDTH;
     public cache: Map<string, Function> = new Map();
     public colorOptions: Map<string, RGB> = new Map<string, RGB>();
     public gearOptions: Map<string, Gear> = new Map<string, Gear>();
+    public lineWidthOptions : Map<string, LineWidth> = new Map<string, LineWidth>();
+    public ParameterList: ParameterList = new ParameterList(this.currentColor, this.currentLineWidth);
 
     /**
      * sets the colorOptions based on the globaly set Colors
@@ -22,17 +26,22 @@ export default class PaintView {
 
         GEARS.forEach(gear => {
             this.gearOptions[gear.constructor.name] = gear;
-        })
+        });
 
-        this.cache["oldStart"] = this.currentGear.start(this.currentColor, this.currentLineWidth);
-        this.cache['oldFinish'] = this.currentGear.finish(this.currentLineWidth);
-        this.cache['oldDraw'] = this.currentGear.draw(this.currentLineWidth);
+        LINE_WIDTHS.forEach(width => {
+            this.lineWidthOptions[width.width] = width;
+        });
+
+        this.cache["oldStart"] = this.currentGear.start(this.ParameterList);
+        this.cache['oldFinish'] = this.currentGear.finish(this.ParameterList);
+        this.cache['oldDraw'] = this.currentGear.draw(this.ParameterList);
 
         this.addEventListener = this.addEventListener.bind(this);
         this.displayColorPallet = this.displayColorPallet.bind(this);
         this.colorChange = this.colorChange.bind(this);
         this.displayGearOptions = this.displayGearOptions.bind(this);
         this.gearChange = this.gearChange.bind(this);
+        this.changeLineWidth = this.changeLineWidth.bind(this);
     }
 
     initialize(){
@@ -40,6 +49,7 @@ export default class PaintView {
         this.displayCurrentColor();
         this.displayGearOptions();
         this.displayCurrentGear();
+        this.displayLineWidthOptions();
         this.addEventListener();
     }
 
@@ -53,9 +63,9 @@ export default class PaintView {
         CANVAS.removeEventListener('mouseup', this.cache['oldFinish']);
         CANVAS.removeEventListener('mousemove', this.cache['oldDraw']);
 
-        this.cache["oldStart"] = this.currentGear.start(this.currentColor, this.currentLineWidth);
-        this.cache['oldFinish'] = this.currentGear.finish(this.currentLineWidth);
-        this.cache['oldDraw'] = this.currentGear.draw(this.currentLineWidth);
+        this.cache["oldStart"] = this.currentGear.start(this.ParameterList);
+        this.cache['oldFinish'] = this.currentGear.finish(this.ParameterList);
+        this.cache['oldDraw'] = this.currentGear.draw(this.ParameterList);
 
         CANVAS.addEventListener('mousedown',  this.cache["oldStart"])
         CANVAS.addEventListener('mouseup', this.cache['oldFinish']);
@@ -104,8 +114,21 @@ export default class PaintView {
         }
     }
 
+    displayLineWidthOptions(){
+        const LineWidthOptionsContainer = document.getElementById('lineWidthOptions');
+        for (let option in this.lineWidthOptions){
+            const square = document.createElement('div');
+            square.classList.add('lineWidthOptions');
+            square.id = option;
+            square.innerText = this.lineWidthOptions[option].width;
+            square.addEventListener('click', this.changeLineWidth);
+            LineWidthOptionsContainer.appendChild(square);
+        }
+    }
+
     colorChange(event) {
         this.currentColor = this.colorOptions[event.toElement.id];
+        this.ParameterList.color = this.colorOptions[event.toElement.id];
         this.displayCurrentColor();
         this.addEventListener();
     }
@@ -115,6 +138,12 @@ export default class PaintView {
         this.currentGear = this.gearOptions[event.toElement.id];
         this.currentGear.reset();
         this.displayCurrentGear();
+        this.addEventListener();
+    }
+
+    changeLineWidth(event){
+        this.currentLineWidth = this.lineWidthOptions[event.toElement.id];
+        this.ParameterList.lineWidth = this.lineWidthOptions[event.toElement.id];
         this.addEventListener();
     }
 
