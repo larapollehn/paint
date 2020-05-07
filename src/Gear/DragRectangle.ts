@@ -4,9 +4,9 @@ import {CONTEXT} from "../Globals";
 import dragRec_icon from "../../public/assets/icons/drag_rect.png";
 import Point2D from "../Geo/Point2D";
 import RGB from "../Geo/RGB";
+import ParameterList from "../Parameters";
 
 export default class DragRectangle extends Gear{
-    currentColor: RGB;
     startPoint: Point2D;
 
     constructor() {
@@ -16,7 +16,6 @@ export default class DragRectangle extends Gear{
     start(color): Function {
         const self = this;
         function startDrawing(event) {
-            self.currentColor = color;
             self.startPoint = new Point2D(event.clientX, event.clientY);
         }
         return startDrawing;
@@ -25,13 +24,13 @@ export default class DragRectangle extends Gear{
     /**
      * draws a filled rectangle, with the startPoint and current Position of the mouse-cursor
      * as opposite corners
-     * @param event holds the current position of the mouse-cursor
+     * @param parameterList hold the parameter that can be changed by the user
      */
-    finish(): Function {
+    finish(parameterList: ParameterList): Function {
         const self = this;
         function finishDrawing(event){
             CONTEXT.beginPath();
-            CONTEXT.fillStyle = self.currentColor.rgbValue;
+            CONTEXT.fillStyle = parameterList.color.rgbValue;
             CONTEXT.moveTo(self.startPoint.x, self.startPoint.y);
             CONTEXT.lineTo(event.clientX, self.startPoint.y);
             CONTEXT.lineTo(self.startPoint.x, event.clientY);

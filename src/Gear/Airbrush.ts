@@ -6,24 +6,22 @@ import RGB from "../Geo/RGB";
 
 export default class Airbrush extends Gear {
     painting: boolean = false;
-    currentColor: RGB;
 
     constructor() {
         super(spray_icon);
         this.airbrushEffect = this.airbrushEffect.bind(this);
     }
 
-    start(color): Function {
+    start(): Function {
         CONTEXT.beginPath();
         const self = this;
-        function startDrawing(event) {
-            self.currentColor = color;
+        function startDrawing() {
             self.painting = true;
         }
         return startDrawing;
     }
 
-    finish(color): Function {
+    finish(): Function {
         const self = this;
         function finishDrawing() {
             self.painting = false;
@@ -32,17 +30,17 @@ export default class Airbrush extends Gear {
         return finishDrawing;
     }
 
-    draw() {
+    draw(parameterList): Function {
         const self = this;
         function toDraw(event) {
             if (self.painting) {
-                CONTEXT.lineWidth = 0.1;
+                CONTEXT.lineWidth = 0.2;
                 CONTEXT.lineCap = 'round';
-                self.airbrushEffect(event.clientX-20, event.clientY-20);
-                CONTEXT.strokeStyle = self.currentColor.rgbValue;
+                self.airbrushEffect(event.clientX-((parameterList.lineWidth.width*10)/2), event.clientY-((parameterList.lineWidth.width*10)/2), parameterList);
+                CONTEXT.strokeStyle = parameterList.color.rgbValue;
                 CONTEXT.stroke();
                 CONTEXT.beginPath();
-                self.airbrushEffect(event.clientX-20, event.clientY-20);
+                self.airbrushEffect(event.clientX-((parameterList.lineWidth.width*10)/2), event.clientY-((parameterList.lineWidth.width*10)/2), parameterList);
             }
         }
         return toDraw;
@@ -52,11 +50,12 @@ export default class Airbrush extends Gear {
      * creates an airbrush-effect based on a random distribution of colored short lines
      * @param x is the position of the mouse-cursor on the x-axis
      * @param y is the position of the mouse-cursor on the y-axis
+     * @param parameterList is the list if parameters that can be changed by the user
      */
-    airbrushEffect(x, y) {
-        for (let i = 0; i < 50; i++) {
-            const randomPosX = Math.floor(Math.random() * Math.floor(20))
-            const randomPosY = Math.floor(Math.random() * Math.floor(20))
+    airbrushEffect(x, y, parameterList) {
+        for (let i = 0; i < 40; i++) {
+            const randomPosX = Math.floor(Math.random() * Math.floor(((parameterList.lineWidth.width*10)/2)))
+            const randomPosY = Math.floor(Math.random() * Math.floor(((parameterList.lineWidth.width*10)/2)))
             CONTEXT.lineTo(x + randomPosX, y + randomPosY);
         }
     }

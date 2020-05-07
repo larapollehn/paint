@@ -6,18 +6,15 @@ import RGB from "../Geo/RGB";
 
 export default class Brush extends Gear {
     painting: boolean = false;
-    currentColor: RGB;
 
     constructor() {
         super(brush_icon);
     }
 
-    start(parameterList): Function {
-        console.log(parameterList);
+    start(): Function {
         CONTEXT.beginPath();
         const self = this;
         function startDrawing(event) {
-            self.currentColor = parameterList.color;
             self.painting = true;
         }
         return startDrawing;
@@ -39,7 +36,7 @@ export default class Brush extends Gear {
                 CONTEXT.lineWidth = parameterList.lineWidth.width;
                 CONTEXT.lineCap = 'round';
                 CONTEXT.lineTo(event.clientX, event.clientY);
-                CONTEXT.strokeStyle = self.currentColor.rgbValue;
+                CONTEXT.strokeStyle = parameterList.color.rgbValue;
                 CONTEXT.stroke();
                 CONTEXT.beginPath();
                 CONTEXT.moveTo(event.clientX, event.clientY);

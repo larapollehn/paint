@@ -3,11 +3,10 @@ import Gear from "./Gear";
 // @ts-ignore
 import line_icon from "../../public/assets/icons/line.png";
 import Point2D from "../Geo/Point2D";
-import RGB from "../Geo/RGB";
+import ParameterList from "../Parameters";
 
 export default class LinePen extends Gear {
     painting: boolean = false;
-    currentColor: RGB;
     startPoint: Point2D;
 
     constructor() {
@@ -17,12 +16,10 @@ export default class LinePen extends Gear {
     /**
      * sets startPoint and startColor and painting
      * draws a "dot" at the Position of startPoint
-     * @param color
      */
-    start(color): Function {
+    start(): Function {
         const self = this;
         function startDrawing(event) {
-            self.currentColor = color;
             self.painting = true;
             self.startPoint = new Point2D(event.clientX, event.clientY);
             self.finish(event);
@@ -34,9 +31,9 @@ export default class LinePen extends Gear {
     /**
      * connects the startPoint with the current Position of the mouse-cursor
      * draws a Line between them
-     * @param event holds the current Position of the mouse-cursor
+     * @param parameterList hold the parameter, that can be changes by the user
      */
-    finish(event): Function {
+    finish(parameterList: ParameterList): Function {
         const self = this;
         function finishDrawing(event) {
             self.painting = false;
@@ -45,7 +42,7 @@ export default class LinePen extends Gear {
             CONTEXT.lineCap = 'round';
             CONTEXT.moveTo(self.startPoint.x, self.startPoint.y);
             CONTEXT.lineTo(event.clientX, event.clientY);
-            CONTEXT.strokeStyle = self.currentColor.rgbValue;
+            CONTEXT.strokeStyle = parameterList.color.rgbValue;
             CONTEXT.stroke();
         }
         return finishDrawing;
@@ -57,6 +54,5 @@ export default class LinePen extends Gear {
     reset() {
         this.painting = false;
         this.startPoint = null;
-        this.currentColor = null;
     }
 }

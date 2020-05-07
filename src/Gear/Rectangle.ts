@@ -2,6 +2,7 @@ import Gear from "./Gear";
 // @ts-ignore
 import rect_icon from "../../public/assets/icons/rect.png";
 import {CONTEXT} from "../Globals";
+import ParameterList from "../Parameters";
 
 export default class Rectangle extends Gear{
     constructor() {
@@ -10,13 +11,13 @@ export default class Rectangle extends Gear{
 
     /**
      * draws a rectangle on the canvas at the current Position of the mouse-cursor
-     * @param color sets the color of the drawn rectangle
+     * @param parameterList hold the parameter, that can be changes by the user
      */
-    start(color): Function {
+    start(parameterList: ParameterList): Function {
         function startDrawing(event){
             CONTEXT.beginPath();
-            CONTEXT.fillStyle = color.rgbValue;
-            CONTEXT.fillRect(event.clientX, event.clientY, 20, 20);
+            CONTEXT.fillStyle = parameterList.color.rgbValue;
+            CONTEXT.fillRect(event.clientX-((parameterList.lineWidth.width *10)/2), event.clientY-((parameterList.lineWidth.width *10)/2), parameterList.lineWidth.width *10, parameterList.lineWidth.width *10);
         }
        return startDrawing;
     }
