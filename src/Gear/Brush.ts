@@ -20,12 +20,13 @@ export default class Brush extends Gear {
         return startDrawing;
     }
 
-    finish(): Function {
+    finish(parameterList): Function {
         const self = this;
         function finishDrawing() {
             self.painting = false;
             CONTEXT.beginPath();
         }
+        parameterList.undoButton.saveImage();
         return finishDrawing;
     }
 

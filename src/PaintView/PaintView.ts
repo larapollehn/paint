@@ -3,6 +3,7 @@ import Gear from "../Gear/Gear";
 import RGB from "../Geo/RGB";
 import LineWidth from "../Geo/LineWidth";
 import ParameterList from "../Parameters";
+import Undo from "../Services/Undo";
 
 export default class PaintView {
     public currentColor: RGB = DEFAULT_COLOR;
@@ -12,7 +13,9 @@ export default class PaintView {
     public colorOptions: Map<string, RGB> = new Map<string, RGB>();
     public gearOptions: Map<string, Gear> = new Map<string, Gear>();
     public lineWidthOptions : Map<string, LineWidth> = new Map<string, LineWidth>();
-    public ParameterList: ParameterList = new ParameterList(this.currentColor, this.currentLineWidth);
+    public UndoButton: Undo = new Undo();
+    public ParameterList: ParameterList = new ParameterList(this.currentColor, this.currentLineWidth, this.UndoButton);
+
 
     /**
      * sets the colorOptions based on the globaly set Colors
@@ -52,6 +55,7 @@ export default class PaintView {
         this.displayLineWidthOptions();
         this.displayCurrentLineWidth();
         this.addEventListener();
+        this.addServiceEventListener();
     }
 
     /**
@@ -71,6 +75,14 @@ export default class PaintView {
         CANVAS.addEventListener('mousedown',  this.cache["oldStart"])
         CANVAS.addEventListener('mouseup', this.cache['oldFinish']);
         CANVAS.addEventListener('mousemove', this.cache['oldDraw']);
+    }
+
+    addServiceEventListener(){
+        const undo_btn = document.getElementById('undoBtn');
+        undo_btn.addEventListener('click', this.UndoButton.undo);
+
+        const save_btn = document.getElementById('saveBtn');
+        save_btn.addEventListener('click', this.UndoButton.saveImage);
     }
 
     displayCurrentColor() {

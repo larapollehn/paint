@@ -26,7 +26,6 @@ export default class DragCircle extends Gear{
      * @param parameterList hold the parameter, that can be changes by the user
      */
     finish(parameterList): Function {
-        console.log(parameterList);
         const self = this;
         function finishDrawing(event) {
             const radius = Math.sqrt(Math.pow(event.clientX - self.startPoint.x, 2) + Math.pow(event.clientY - self.startPoint.y,2))/2
