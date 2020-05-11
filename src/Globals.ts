@@ -46,7 +46,7 @@ export const GEARS = [
 
 export const DEFAULT_COLOR = new RGB( 0,0,0);
 
-export const COLORS = [
+export let COLORS = [
     DEFAULT_COLOR,
     new RGB(255, 0, 0),
     new RGB(0, 0, 255),

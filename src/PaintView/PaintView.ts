@@ -17,6 +17,7 @@ import Undo from "../Services/Undo";
 import Download from "../Services/Download";
 import ColoringTemplate from "../Services/ColoringTemplate";
 import ResizeCanvas from "../Services/ResizeCanvas";
+import CustomColors from "../Services/CustomColors";
 
 export default class PaintView {
     public currentColor: RGB = DEFAULT_COLOR;
@@ -25,7 +26,7 @@ export default class PaintView {
     public cache: Map<string, Function> = new Map();
     public colorOptions: Map<string, RGB> = new Map<string, RGB>();
     public gearOptions: Map<string, Gear> = new Map<string, Gear>();
-    public lineWidthOptions : Map<string, LineWidth> = new Map<string, LineWidth>();
+    public lineWidthOptions: Map<string, LineWidth> = new Map<string, LineWidth>();
     public coloringTemplates: Map<string, ColoringTemplate> = new Map<string, ColoringTemplate>();
     public UndoButton: Undo = new Undo();
     public ResizeButton: ResizeCanvas = new ResizeCanvas();
@@ -68,9 +69,10 @@ export default class PaintView {
         this.newDrawing = this.newDrawing.bind(this);
         this.displayColoringTemplates = this.displayColoringTemplates.bind(this);
         this.drawColoringTemplate = this.drawColoringTemplate.bind(this);
+        this.addCustomColor = this.addCustomColor.bind(this);
     }
 
-    initialize(){
+    initialize() {
         this.displayColorPallet();
         this.displayCurrentColor();
         this.displayGearOptions();
@@ -98,12 +100,12 @@ export default class PaintView {
         this.cache['oldFinish'] = this.currentGear.finish(this.ParameterList);
         this.cache['oldDraw'] = this.currentGear.draw(this.ParameterList);
 
-        CANVAS.addEventListener('mousedown',  this.cache["oldStart"])
+        CANVAS.addEventListener('mousedown', this.cache["oldStart"])
         CANVAS.addEventListener('mouseup', this.cache['oldFinish']);
         CANVAS.addEventListener('mousemove', this.cache['oldDraw']);
     }
 
-    addServiceEventListener(){
+    addServiceEventListener() {
         const undo_btn = document.getElementById('undoBtn');
         undo_btn.addEventListener('click', this.UndoButton.undo);
 
@@ -115,6 +117,9 @@ export default class PaintView {
 
         const resize_drag_btn = document.getElementById('dragBtn');
         resize_drag_btn.addEventListener('mousedown', this.ResizeButton.start);
+
+        const custom_color_btn = document.getElementById('addColorBtn');
+        custom_color_btn.addEventListener('click', this.addCustomColor);
     }
 
     displayCurrentColor() {
@@ -127,7 +132,7 @@ export default class PaintView {
      */
     displayColorPallet() {
         const colorOptionsContainer = document.getElementById('colorOptions');
-        for(let color in this.colorOptions){
+        for (let color in this.colorOptions) {
             const square = document.createElement('div');
             square.classList.add('colorOptions');
             square.style.backgroundColor = this.colorOptions[color].rgbValue;
@@ -137,7 +142,7 @@ export default class PaintView {
         }
     }
 
-    displayCurrentGear(){
+    displayCurrentGear() {
         const currentGearSquare = document.getElementById('currentGear');
         currentGearSquare.style.backgroundImage = 'url("' + this.currentGear.icon + '")';
         currentGearSquare.style.backgroundSize = 'cover';
@@ -146,9 +151,9 @@ export default class PaintView {
     /**
      * creates an HTML-Div for each Gear of the globally set gears and displays the specific icon
      */
-    displayGearOptions(){
+    displayGearOptions() {
         const GearOptionContainer = document.getElementById('gearOptions');
-        for (let gear in this.gearOptions){
+        for (let gear in this.gearOptions) {
             const square = document.createElement('div');
             square.classList.add('gearOption');
             square.id = gear;
@@ -159,14 +164,14 @@ export default class PaintView {
         }
     }
 
-    displayCurrentLineWidth(){
+    displayCurrentLineWidth() {
         const CurrentLineWidthSquare = document.getElementById('currentLineWidth');
         CurrentLineWidthSquare.innerText = `${this.currentLineWidth.width}`;
     }
 
-    displayLineWidthOptions(){
+    displayLineWidthOptions() {
         const LineWidthOptionsContainer = document.getElementById('lineWidthOptions');
-        for (let option in this.lineWidthOptions){
+        for (let option in this.lineWidthOptions) {
             const square = document.createElement('div');
             square.classList.add('lineWidthOptions');
             square.id = option;
@@ -176,9 +181,9 @@ export default class PaintView {
         }
     }
 
-    displayColoringTemplates(){
+    displayColoringTemplates() {
         const TemplateContainer = document.getElementById('coloringTemplates');
-        for (let template in this.coloringTemplates){
+        for (let template in this.coloringTemplates) {
             const square = document.createElement('div');
             square.classList.add('coloringTemplates');
             square.id = template;
@@ -190,6 +195,8 @@ export default class PaintView {
     }
 
     colorChange(event) {
+        console.log(this.colorOptions);
+        console.log(event.toElement.id);
         this.currentColor = this.colorOptions[event.toElement.id];
         this.ParameterList.color = this.colorOptions[event.toElement.id];
         this.displayCurrentColor();
@@ -204,14 +211,14 @@ export default class PaintView {
         this.addEventListener();
     }
 
-    changeLineWidth(event){
+    changeLineWidth(event) {
         this.currentLineWidth = this.lineWidthOptions[event.toElement.id];
         this.ParameterList.lineWidth = this.lineWidthOptions[event.toElement.id];
         this.displayCurrentLineWidth();
         this.addEventListener();
     }
 
-    drawColoringTemplate(event){
+    drawColoringTemplate(event) {
         let template = new Image;
         template.src = this.coloringTemplates[event.toElement.id].png;
         template.onload = function () {
@@ -219,8 +226,8 @@ export default class PaintView {
         }
     }
 
-    newDrawing(){
-        CONTEXT.clearRect(0,0, CANVAS.width, CANVAS.height);
+    newDrawing() {
+        CONTEXT.clearRect(0, 0, CANVAS.width, CANVAS.height);
         sessionStorage.clear();
         this.currentColor = DEFAULT_COLOR;
         this.currentGear.reset();
@@ -233,6 +240,21 @@ export default class PaintView {
         this.displayCurrentGear();
         this.displayCurrentLineWidth();
         this.addEventListener();
+    }
+
+    addCustomColor() {
+        let custom_color = document.getElementById('customColor').value;
+        let Color: CustomColors = new CustomColors(custom_color);
+        let RGBColor: RGB = Color.createRGB();
+        this.colorOptions[RGBColor.rgbValue] = RGBColor;
+
+        const colorOptionsContainer = document.getElementById('colorOptions');
+        const square = document.createElement('div');
+        square.classList.add('colorOptions');
+        square.style.backgroundColor = this.colorOptions[RGBColor.rgbValue].rgbValue;
+        square.id = Color.rgbValue();
+        square.addEventListener('click', this.colorChange)
+        colorOptionsContainer.appendChild(square);
     }
 
 }
