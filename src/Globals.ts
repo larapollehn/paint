@@ -12,6 +12,18 @@ import Eraser from "./Gear/Eraser";
 import fish_template from "../public/assets/images/fish.jpg";
 // @ts-ignore
 import frog_template from "../public/assets/images/frog.png";
+// @ts-ignore
+import mandala1_template from "../public/assets/images/mandala1.jpg";
+// @ts-ignore
+import mandala2_template from "../public/assets/images/mandala2.jpg";
+// @ts-ignore
+import minion_template from "../public/assets/images/minion.jpg";
+// @ts-ignore
+import pokemon_template from "../public/assets/images/pokemon.jpg";
+// @ts-ignore
+import princess_template from "../public/assets/images/princess.jpg";
+// @ts-ignore
+import unicorn_template from "../public/assets/images/unicorn.jpeg";
 import ColoringTemplate from "./Services/ColoringTemplate";
 
 const CANVAS: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('myCanvas');
@@ -54,5 +66,11 @@ export const LINE_WIDTHS = [
 
 export const COLORING_TEMPLATES = [
     new ColoringTemplate('fish', fish_template),
-    new ColoringTemplate('frog', frog_template)
+    new ColoringTemplate('frog', frog_template),
+    new ColoringTemplate('mandala1', mandala1_template),
+    new ColoringTemplate('mandala2', mandala2_template),
+    new ColoringTemplate('minion', minion_template),
+    new ColoringTemplate('pokemon', pokemon_template),
+    new ColoringTemplate('princess', princess_template),
+    new ColoringTemplate('unicorn', unicorn_template)
 ]
