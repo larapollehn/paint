@@ -85,7 +85,7 @@ export default class PaintView {
         undo_btn.addEventListener('click', this.UndoButton.undo);
 
         const download_btn = document.getElementById('downloadBtn');
-        download_btn.addEventListener('click', this.DownloadButton.saveWhiteBackground);
+        download_btn.addEventListener('click', this.DownloadButton.download);
 
         const newDrawing_btn = document.getElementById('newDrawingBtn');
         newDrawing_btn.addEventListener('click', this.newDrawing);
