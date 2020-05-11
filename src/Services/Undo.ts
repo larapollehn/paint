@@ -8,6 +8,8 @@ export default class Undo {
     constructor() {
 
         this.saveImage = this.saveImage.bind(this);
+        this.undo = this.undo.bind(this);
+        this.whiteOut = this.whiteOut.bind(this);
     }
 
     /**
@@ -34,8 +36,9 @@ export default class Undo {
      * gets up to the three last pictures in session storage
      */
     undo() {
+        this.whiteOut();
         if (this.currentPic >= 2) {
-            let dataURL = sessionStorage.getItem(`pic${this.currentPic-1}`);
+            let dataURL = sessionStorage.getItem(`pic${this.currentPic}`);
             this.currentPic = this.currentPic - 1;
             let img = new Image;
             img.src = dataURL;
@@ -53,10 +56,13 @@ export default class Undo {
      * because the pictures have a transparent background
      */
     whiteOut() {
+        /**
         CONTEXT.beginPath();
         CONTEXT.rect(0, 0, CANVAS.width, CANVAS.height);
         CONTEXT.fillStyle = "rgb(255, 255, 255)";
         CONTEXT.fill();
+         **/
+        CONTEXT.clearRect(0,0, CANVAS.width, CANVAS.height);
     }
 
 }

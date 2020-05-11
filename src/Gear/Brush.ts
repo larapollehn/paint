@@ -24,9 +24,9 @@ export default class Brush extends Gear {
         const self = this;
         function finishDrawing() {
             self.painting = false;
+            parameterList.undoButton.saveImage();
             CONTEXT.beginPath();
         }
-        parameterList.undoButton.saveImage();
         return finishDrawing;
     }
 
