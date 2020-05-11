@@ -44,6 +44,8 @@ export const GEARS = [
     new Eraser()
 ];
 
+
+
 export const DEFAULT_COLOR = new RGB( 0,0,0);
 
 export let COLORS = [

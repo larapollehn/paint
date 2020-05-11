@@ -195,8 +195,6 @@ export default class PaintView {
     }
 
     colorChange(event) {
-        console.log(this.colorOptions);
-        console.log(event.toElement.id);
         this.currentColor = this.colorOptions[event.toElement.id];
         this.ParameterList.color = this.colorOptions[event.toElement.id];
         this.displayCurrentColor();
