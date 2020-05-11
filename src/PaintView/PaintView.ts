@@ -16,6 +16,7 @@ import ParameterList from "../Parameters";
 import Undo from "../Services/Undo";
 import Download from "../Services/Download";
 import ColoringTemplate from "../Services/ColoringTemplate";
+import ResizeCanvas from "../Services/ResizeCanvas";
 
 export default class PaintView {
     public currentColor: RGB = DEFAULT_COLOR;
@@ -27,6 +28,7 @@ export default class PaintView {
     public lineWidthOptions : Map<string, LineWidth> = new Map<string, LineWidth>();
     public coloringTemplates: Map<string, ColoringTemplate> = new Map<string, ColoringTemplate>();
     public UndoButton: Undo = new Undo();
+    public ResizeButton: ResizeCanvas = new ResizeCanvas();
     public DownloadButton: Download = new Download();
     public ParameterList: ParameterList = new ParameterList(this.currentColor, this.currentLineWidth, this.UndoButton);
 
@@ -78,6 +80,8 @@ export default class PaintView {
         this.displayColoringTemplates();
         this.addEventListener();
         this.addServiceEventListener();
+        CANVAS.width = 700;
+        CANVAS.height = 400;
     }
 
     /**
@@ -108,6 +112,9 @@ export default class PaintView {
 
         const newDrawing_btn = document.getElementById('newDrawingBtn');
         newDrawing_btn.addEventListener('click', this.newDrawing);
+
+        const resize_drag_btn = document.getElementById('dragBtn');
+        resize_drag_btn.addEventListener('mousedown', this.ResizeButton.start);
     }
 
     displayCurrentColor() {
