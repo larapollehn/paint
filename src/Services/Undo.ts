@@ -9,7 +9,7 @@ export default class Undo {
 
         this.saveImage = this.saveImage.bind(this);
         this.undo = this.undo.bind(this);
-        this.whiteOut = this.whiteOut.bind(this);
+        this.clearCanvas = this.clearCanvas.bind(this);
     }
 
     /**
@@ -36,7 +36,7 @@ export default class Undo {
      * gets up to the three last pictures in session storage
      */
     undo() {
-        this.whiteOut();
+        this.clearCanvas();
         if (this.currentPic >= 2) {
             let dataURL = sessionStorage.getItem(`pic${this.currentPic}`);
             this.currentPic = this.currentPic - 1;
@@ -51,11 +51,11 @@ export default class Undo {
     }
 
     /**
-     * puts a white rectangle on top of the canvas
+     * clears the Canvas
      * otherwise the undo function doesnt show, old pictures layer over the newer ones
      * because the pictures have a transparent background
      */
-    whiteOut() {
+    clearCanvas() {
         /**
         CONTEXT.beginPath();
         CONTEXT.rect(0, 0, CANVAS.width, CANVAS.height);
