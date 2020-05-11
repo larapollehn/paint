@@ -1,10 +1,21 @@
-import {CANVAS, COLORS, CONTEXT, DEFAULT_COLOR, DEFAULT_GEAR, DEFAULT_LINE_WIDTH, GEARS, LINE_WIDTHS} from "../Globals";
+import {
+    CANVAS,
+    COLORING_TEMPLATES,
+    COLORS,
+    CONTEXT,
+    DEFAULT_COLOR,
+    DEFAULT_GEAR,
+    DEFAULT_LINE_WIDTH,
+    GEARS,
+    LINE_WIDTHS
+} from "../Globals";
 import Gear from "../Gear/Gear";
 import RGB from "../Geo/RGB";
 import LineWidth from "../Geo/LineWidth";
 import ParameterList from "../Parameters";
 import Undo from "../Services/Undo";
 import Download from "../Services/Download";
+import ColoringTemplate from "../Services/ColoringTemplate";
 
 export default class PaintView {
     public currentColor: RGB = DEFAULT_COLOR;
@@ -14,6 +25,7 @@ export default class PaintView {
     public colorOptions: Map<string, RGB> = new Map<string, RGB>();
     public gearOptions: Map<string, Gear> = new Map<string, Gear>();
     public lineWidthOptions : Map<string, LineWidth> = new Map<string, LineWidth>();
+    public coloringTemplates: Map<string, ColoringTemplate> = new Map<string, ColoringTemplate>();
     public UndoButton: Undo = new Undo();
     public DownloadButton: Download = new Download();
     public ParameterList: ParameterList = new ParameterList(this.currentColor, this.currentLineWidth, this.UndoButton);
@@ -37,6 +49,10 @@ export default class PaintView {
             this.lineWidthOptions[width.width] = width;
         });
 
+        COLORING_TEMPLATES.forEach(template => {
+            this.coloringTemplates[template.name] = template;
+        });
+
         this.cache["oldStart"] = this.currentGear.start(this.ParameterList);
         this.cache['oldFinish'] = this.currentGear.finish(this.ParameterList);
         this.cache['oldDraw'] = this.currentGear.draw(this.ParameterList);
@@ -48,6 +64,8 @@ export default class PaintView {
         this.gearChange = this.gearChange.bind(this);
         this.changeLineWidth = this.changeLineWidth.bind(this);
         this.newDrawing = this.newDrawing.bind(this);
+        this.displayColoringTemplates = this.displayColoringTemplates.bind(this);
+        this.drawColoringTemplate = this.drawColoringTemplate.bind(this);
     }
 
     initialize(){
@@ -57,6 +75,7 @@ export default class PaintView {
         this.displayCurrentGear();
         this.displayLineWidthOptions();
         this.displayCurrentLineWidth();
+        this.displayColoringTemplates();
         this.addEventListener();
         this.addServiceEventListener();
     }
@@ -150,6 +169,19 @@ export default class PaintView {
         }
     }
 
+    displayColoringTemplates(){
+        const TemplateContainer = document.getElementById('coloringTemplates');
+        for (let template in this.coloringTemplates){
+            const square = document.createElement('div');
+            square.classList.add('coloringTemplates');
+            square.id = template;
+            square.style.backgroundImage = 'url("' + this.coloringTemplates[template].png + '")';
+            square.style.backgroundSize = 'cover';
+            square.addEventListener('click', this.drawColoringTemplate);
+            TemplateContainer.appendChild(square);
+        }
+    }
+
     colorChange(event) {
         this.currentColor = this.colorOptions[event.toElement.id];
         this.ParameterList.color = this.colorOptions[event.toElement.id];
@@ -172,11 +204,19 @@ export default class PaintView {
         this.addEventListener();
     }
 
+    drawColoringTemplate(event){
+        let template = new Image;
+        template.src = this.coloringTemplates[event.toElement.id].png;
+        template.onload = function () {
+            CONTEXT.drawImage(template, 0, 0, CANVAS.width, CANVAS.height);
+        }
+    }
+
     newDrawing(){
         CONTEXT.clearRect(0,0, CANVAS.width, CANVAS.height);
         sessionStorage.clear();
-        this.currentGear.reset();
         this.currentColor = DEFAULT_COLOR;
+        this.currentGear.reset();
         this.currentGear = DEFAULT_GEAR;
         this.currentGear.reset();
         this.currentLineWidth = DEFAULT_LINE_WIDTH;

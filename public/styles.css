@@ -58,3 +58,9 @@
 .lineWidthOptions:hover {
     background-color: grey;
 }
+
+.coloringTemplates{
+    height: 100px;
+    width: 200px;
+    border: 1px solid black;
+}
