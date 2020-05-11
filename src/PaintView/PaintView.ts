@@ -1,9 +1,10 @@
-import {CANVAS, COLORS, DEFAULT_COLOR, DEFAULT_GEAR, DEFAULT_LINE_WIDTH, GEARS, LINE_WIDTHS} from "../Globals";
+import {CANVAS, COLORS, CONTEXT, DEFAULT_COLOR, DEFAULT_GEAR, DEFAULT_LINE_WIDTH, GEARS, LINE_WIDTHS} from "../Globals";
 import Gear from "../Gear/Gear";
 import RGB from "../Geo/RGB";
 import LineWidth from "../Geo/LineWidth";
 import ParameterList from "../Parameters";
 import Undo from "../Services/Undo";
+import Download from "../Services/Download";
 
 export default class PaintView {
     public currentColor: RGB = DEFAULT_COLOR;
@@ -14,6 +15,7 @@ export default class PaintView {
     public gearOptions: Map<string, Gear> = new Map<string, Gear>();
     public lineWidthOptions : Map<string, LineWidth> = new Map<string, LineWidth>();
     public UndoButton: Undo = new Undo();
+    public DownloadButton: Download = new Download();
     public ParameterList: ParameterList = new ParameterList(this.currentColor, this.currentLineWidth, this.UndoButton);
 
 
@@ -45,6 +47,7 @@ export default class PaintView {
         this.displayGearOptions = this.displayGearOptions.bind(this);
         this.gearChange = this.gearChange.bind(this);
         this.changeLineWidth = this.changeLineWidth.bind(this);
+        this.newDrawing = this.newDrawing.bind(this);
     }
 
     initialize(){
@@ -81,8 +84,11 @@ export default class PaintView {
         const undo_btn = document.getElementById('undoBtn');
         undo_btn.addEventListener('click', this.UndoButton.undo);
 
-        const save_btn = document.getElementById('saveBtn');
-        save_btn.addEventListener('click', this.UndoButton.saveImage);
+        const download_btn = document.getElementById('downloadBtn');
+        download_btn.addEventListener('click', this.DownloadButton.saveWhiteBackground);
+
+        const newDrawing_btn = document.getElementById('newDrawingBtn');
+        newDrawing_btn.addEventListener('click', this.newDrawing);
     }
 
     displayCurrentColor() {
@@ -162,6 +168,22 @@ export default class PaintView {
     changeLineWidth(event){
         this.currentLineWidth = this.lineWidthOptions[event.toElement.id];
         this.ParameterList.lineWidth = this.lineWidthOptions[event.toElement.id];
+        this.displayCurrentLineWidth();
+        this.addEventListener();
+    }
+
+    newDrawing(){
+        CONTEXT.clearRect(0,0, CANVAS.width, CANVAS.height);
+        sessionStorage.clear();
+        this.currentGear.reset();
+        this.currentColor = DEFAULT_COLOR;
+        this.currentGear = DEFAULT_GEAR;
+        this.currentGear.reset();
+        this.currentLineWidth = DEFAULT_LINE_WIDTH;
+        this.ParameterList.color = DEFAULT_COLOR;
+        this.ParameterList.lineWidth = DEFAULT_LINE_WIDTH;
+        this.displayCurrentColor();
+        this.displayCurrentGear();
         this.displayCurrentLineWidth();
         this.addEventListener();
     }

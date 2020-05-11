@@ -17,6 +17,7 @@ export default class Undo {
      * works like stack
      */
     saveImage() {
+        this.currentPic = 4;
         if (this.picCount <= 4) {
             this.savedImages[this.picCount - 1] = CANVAS.toDataURL();
             this.picCount++;
@@ -36,9 +37,9 @@ export default class Undo {
      * gets up to the three last pictures in session storage
      */
     undo() {
-        this.clearCanvas();
         if (this.currentPic >= 2) {
-            let dataURL = sessionStorage.getItem(`pic${this.currentPic}`);
+            this.clearCanvas();
+            let dataURL = sessionStorage.getItem(`pic${this.currentPic-1}`);
             this.currentPic = this.currentPic - 1;
             let img = new Image;
             img.src = dataURL;
@@ -46,7 +47,7 @@ export default class Undo {
                 CONTEXT.drawImage(img, 0, 0);
             }
         } else {
-            this.currentPic = 4;
+            alert('no more undo possible');
         }
     }
 
@@ -56,12 +57,6 @@ export default class Undo {
      * because the pictures have a transparent background
      */
     clearCanvas() {
-        /**
-        CONTEXT.beginPath();
-        CONTEXT.rect(0, 0, CANVAS.width, CANVAS.height);
-        CONTEXT.fillStyle = "rgb(255, 255, 255)";
-        CONTEXT.fill();
-         **/
         CONTEXT.clearRect(0,0, CANVAS.width, CANVAS.height);
     }
 
