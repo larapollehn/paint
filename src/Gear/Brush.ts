@@ -3,6 +3,7 @@ import {CONTEXT} from "../Globals";
 // @ts-ignore
 import brush_icon from '../../public/assets/icons/tools.png';
 import RGB from "../Geo/RGB";
+import ParameterList from "../Parameters";
 
 export default class Brush extends Gear {
     painting: boolean = false;
@@ -20,7 +21,7 @@ export default class Brush extends Gear {
         return startDrawing;
     }
 
-    finish(parameterList): Function {
+    finish(parameterList: ParameterList): Function {
         const self = this;
         function finishDrawing() {
             self.painting = false;

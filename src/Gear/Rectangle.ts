@@ -18,6 +18,7 @@ export default class Rectangle extends Gear{
             CONTEXT.beginPath();
             CONTEXT.fillStyle = parameterList.color.rgbValue;
             CONTEXT.fillRect(event.clientX-((parameterList.lineWidth.width *10)/2), event.clientY-((parameterList.lineWidth.width *10)/2), parameterList.lineWidth.width *10, parameterList.lineWidth.width *10);
+            parameterList.undoButton.saveImage();
         }
        return startDrawing;
     }

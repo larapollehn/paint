@@ -38,6 +38,7 @@ export default class DragRectangle extends Gear{
             CONTEXT.lineTo(event.clientX, self.startPoint.y);
             CONTEXT.lineTo(self.startPoint.x, event.clientY);
             CONTEXT.fill();
+            parameterList.undoButton.saveImage();
         }
         return finishDrawing;
     }

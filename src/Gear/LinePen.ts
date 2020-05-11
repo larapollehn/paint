@@ -44,6 +44,7 @@ export default class LinePen extends Gear {
             CONTEXT.lineTo(event.clientX, event.clientY);
             CONTEXT.strokeStyle = parameterList.color.rgbValue;
             CONTEXT.stroke();
+            parameterList.undoButton.saveImage();
         }
         return finishDrawing;
     }

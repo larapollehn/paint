@@ -3,6 +3,7 @@ import {CONTEXT} from "../Globals";
 // @ts-ignore
 import spray_icon from '../../public/assets/icons/spraycan.png';
 import RGB from "../Geo/RGB";
+import ParameterList from "../Parameters";
 
 export default class Airbrush extends Gear {
     painting: boolean = false;
@@ -21,10 +22,11 @@ export default class Airbrush extends Gear {
         return startDrawing;
     }
 
-    finish(): Function {
+    finish(parameterList: ParameterList): Function {
         const self = this;
         function finishDrawing() {
             self.painting = false;
+            parameterList.undoButton.saveImage();
             CONTEXT.beginPath();
         }
         return finishDrawing;

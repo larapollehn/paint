@@ -23,6 +23,7 @@ export default class Triangle extends Gear{
             CONTEXT.lineTo(event.clientX+rightDrift-leftDrift, event.clientY+leftDrift);
             CONTEXT.lineTo(event.clientX,(event.clientY-rightDrift+leftDrift));
             CONTEXT.fill();
+            parameterList.undoButton.saveImage();
         }
         return startDrawing;
     }
