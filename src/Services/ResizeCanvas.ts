@@ -1,4 +1,4 @@
-import {CANVAS} from "../Globals";
+import {CANVAS, CONTEXT} from "../Globals";
 
 export default class ResizeCanvas {
     public dragging: boolean = false;
@@ -11,7 +11,6 @@ export default class ResizeCanvas {
     }
 
     start() {
-        console.log('start resizing');
         window.addEventListener('mousemove', this.resize);
         window.addEventListener('mouseup', this.finish);
         this.dragging = true;
@@ -19,8 +18,22 @@ export default class ResizeCanvas {
 
     resize(event) {
         if (this.dragging) {
-            CANVAS.width += 1;
-            CANVAS.height += 1;
+            let picture = CANVAS.toDataURL();
+            let img = new Image;
+            img.src = picture;
+            if(event.clientY >= CANVAS.height){
+                CANVAS.width += 5;
+                CANVAS.height += 5;
+                img.onload = function () {
+                    CONTEXT.drawImage(img, 0, 0);
+                }
+            } else {
+                CANVAS.width -= 5;
+                CANVAS.height -= 5;
+                img.onload = function () {
+                    CONTEXT.drawImage(img, 0, 0);
+                }
+            }
         }
     }
 
