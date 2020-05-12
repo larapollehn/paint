@@ -1,0 +1,18 @@
+// Abstracts - variables - grids
+@import 'scss/abstracts/colors';
+@import 'scss/abstracts/globalGrid';
+@import 'scss/abstracts/leftGrid';
+@import 'scss/abstracts/topGrid';
+
+//Components
+@import 'scss/components/canvas';
+@import 'scss/components/leftBar';
+@import 'scss/components/topBar';
+@import 'scss/components/mainMenu';
+@import 'scss/components/title';
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}

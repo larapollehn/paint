@@ -1,0 +1,17 @@
+#leftBar{
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 50% 50%;
+}
+
+#lineWidthSection{
+  grid-column: 1/2 ;
+  grid-row: 1/2;
+  background-color: darkseagreen;
+}
+
+#gearSection{
+  grid-column: 2/3 ;
+  grid-row: 1/2;
+  background-color: darkgreen;
+}

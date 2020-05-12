@@ -1,34 +1,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet", href="styles.css">
+    <link rel="stylesheet" , href="styles/styles.scss">
     <title>Paint</title>
 </head>
 <body>
+<div id="app">
 
-    <canvas id="myCanvas"></canvas>
-    <button id="dragBtn">drag</button>
-    <div class="container">
-        <div id="currentGear" class="currentOption"></div>
-        <div id="gearOptions"></div>
+    <h1 id="appTitle">PaintJS</h1>
+
+    <div id="canvas">
+        <canvas id="myCanvas"></canvas>
+        <button id="dragBtn">drag</button>
     </div>
 
-    <div class="container">
-        <div id="currentLineWidth" class="currentOption"></div>
-        <div id="lineWidthOptions"></div>
-    </div>
 
-    <div class="container">
-        <div id="currentColor" class="currentOption"></div>
-        <div id="colorOptions"></div>
-        <div class="newColorSection">
-            <input id="customColor" type="color" value="#ffffff">
-            <button id="addColorBtn">add color</button>
+    <div id="leftBar">
+        <div id="gearSection">
+            <div id="currentGear" class="currentOption"></div>
+            <div id="gearOptions"></div>
         </div>
 
+        <div id="lineWidthSection">
+            <div id="currentLineWidth" class="currentOption"></div>
+            <div id="lineWidthOptions"></div>
+        </div>
     </div>
 
-    <div class="container">
+
+    <div id="topBar">
+        <div id="colorSection">
+            <div id="currentColor" class="currentOption"></div>
+            <div id="colorOptions"></div>
+            <div class="newColorSection">
+                <input id="customColor" type="color" value="#ffffff">
+                <button id="addColorBtn">add color</button>
+            </div>
+        </div>
+
+        <div id="coloringTemplateSection">
+            <div id="coloringTemplates"></div>
+        </div>
+    </div>
+
+
+    <div id="mainMenu" class="container">
         <button id="downloadBtn">Download</button>
         <label>Transparent Background
             <input id="downloadCheckBox" type="checkbox">
@@ -38,11 +54,10 @@
         <button id="newDrawingBtn">NEW</button>
     </div>
 
-    <div class="container">
-        <div id="coloringTemplates"></div>
-    </div>
+
+</div>
 
 
-    <script src="../src/index.ts"></script>
+<script src="../src/index.ts"></script>
 </body>
 </html>

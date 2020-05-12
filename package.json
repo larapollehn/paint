@@ -11,5 +11,8 @@
   "dependencies": {
     "parcel": "^1.12.4",
     "typescript": "^3.8.3"
+  },
+  "devDependencies": {
+    "sass": "^1.26.5"
   }
 }

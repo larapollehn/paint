@@ -1,0 +1,76 @@
+#app {
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 150px auto;
+  grid-template-rows: 40px 60px auto; }
+
+#topBar {
+  grid-column: 2/13;
+  grid-row: 1/3; }
+
+#leftBar {
+  grid-column: 1/ 2;
+  grid-row: 3 / 13; }
+
+#mainMenu {
+  grid-column: 1/2;
+  grid-row: 2/3; }
+
+#appTitle {
+  grid-column: 1/ 2;
+  grid-row: 1/2; }
+
+#canvas {
+  grid-column: 2/13;
+  grid-row: 3/ 13; }
+
+#leftBar {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 50% 50%; }
+
+#lineWidthSection {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  background-color: darkseagreen; }
+
+#gearSection {
+  grid-column: 2/3;
+  grid-row: 1/2;
+  background-color: darkgreen; }
+
+#topBar {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 100%; }
+
+#colorSection {
+  grid-column: 1/2;
+  background-color: deeppink; }
+
+#coloringTemplateSection {
+  grid-column: 2/3;
+  background-color: hotpink; }
+
+#myCanvas {
+  border: 1px solid #d6d6d6; }
+
+#leftBar {
+  background-color: aquamarine; }
+
+#topBar {
+  background-color: thistle; }
+
+#mainMenu {
+  background-color: sandybrown; }
+
+#appTitle {
+  background-color: darkcyan; }
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box; }
+
+/*# sourceMappingURL=styles.css.map */

@@ -37,11 +37,11 @@ export default class Brush extends Gear {
             if (self.painting) {
                 CONTEXT.lineWidth = parameterList.lineWidth.width;
                 CONTEXT.lineCap = 'round';
-                CONTEXT.lineTo(event.clientX, event.clientY);
+                CONTEXT.lineTo(event.pageX, event.pageY);
                 CONTEXT.strokeStyle = parameterList.color.rgbValue;
                 CONTEXT.stroke();
                 CONTEXT.beginPath();
-                CONTEXT.moveTo(event.clientX, event.clientY);
+                CONTEXT.moveTo(event.pageX, event.pageY);
             }
         }
         return toDraw;
