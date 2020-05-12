@@ -1,8 +1,24 @@
 #mainMenu{
-  background-color: sandybrown;
+}
+
+%btnSize{
+  height: 20px;
+  width: 20px;
+  display: inline-block;
 }
 
 #undoBtn{
-  height: 20px;
-  width: 20px;
+  @extend %btnSize;
+}
+
+#reverseUndoBtn{
+  @extend %btnSize;
+}
+
+#downloadBtn{
+  @extend %btnSize;
+}
+
+#newDrawingBtn{
+  @extend %btnSize;
 }

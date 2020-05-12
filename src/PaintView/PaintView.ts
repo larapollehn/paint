@@ -20,6 +20,12 @@ import ResizeCanvas from "../Services/ResizeCanvas";
 import CustomColors from "../Services/CustomColors";
 // @ts-ignore
 import back_icon from "../../public/assets/icons/back.png"
+// @ts-ignore
+import forward_icon from "../../public/assets/icons/forward.png"
+// @ts-ignore
+import save_icon from "../../public/assets/icons/save.png";
+// @ts-ignore
+import new_icon from "../../public/assets/icons/new.png";
 
 export default class PaintView {
     public currentColor: RGB = DEFAULT_COLOR;
@@ -275,6 +281,18 @@ export default class PaintView {
         const backBtn = document.getElementById('undoBtn');
         backBtn.style.backgroundImage = 'url("' + back_icon + '")';
         backBtn.style.backgroundSize = 'cover';
+
+        const forwardBtn = document.getElementById('reverseUndoBtn');
+        forwardBtn.style.backgroundImage = 'url("' + forward_icon + '")';
+        forwardBtn.style.backgroundSize = 'cover';
+
+        const saveBtn = document.getElementById('downloadBtn');
+        saveBtn.style.backgroundImage = 'url("' + save_icon + '")';
+        saveBtn.style.backgroundSize = 'cover';
+
+        const newBtn = document.getElementById('newDrawingBtn');
+        newBtn.style.backgroundImage = 'url("' + new_icon + '")';
+        newBtn.style.backgroundSize = 'cover';
     }
 
 }
