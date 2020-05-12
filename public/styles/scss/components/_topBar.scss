@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns:  30% 70%;
   grid-template-rows: 100%;
+  background-color: lightgrey;
 }
 
 %topBorderCommons{
@@ -14,11 +15,12 @@
 #colorSection {
   grid-column: 1/2;
   overflow: hidden;
+  border-right: 1px solid gray;
 }
 
 #coloringTemplateSection {
   grid-column: 2/3;
-  background-color: hotpink;
+  padding-left: 20px;
 }
 
 #currentColor{
@@ -38,10 +40,30 @@
   margin-top: 31px;
 }
 
-.newColorSection{
-  margin-top: 38px;
+#customColor{
+  @extend %topBorderCommons;
+  border: $optionBorder;
+  height: 35px;
+  width: 35px;
+  margin: 31px 0 0 15px;
+  background-color: #ffffff;
 }
 
-#customColor{
-  margin-left: 10px;
+#addColorBtn{
+  @extend %topBorderCommons;
+  border: $optionBorder;
+  height: 20px;
+  width: 20px;
+  margin: 40px 0 0 7px;
+  font-weight: bolder;
+  background-color: white;
+}
+
+.coloringTemplates{
+  @extend %topBorderCommons;
+  height: 70px;
+  width: 70px;
+  border: $optionBorder;
+  margin: 15px 10px 0 0;
+  float: left;
 }

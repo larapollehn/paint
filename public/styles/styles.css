@@ -76,9 +76,10 @@
 #topBar {
   display: grid;
   grid-template-columns: 30% 70%;
-  grid-template-rows: 100%; }
+  grid-template-rows: 100%;
+  background-color: lightgrey; }
 
-#currentColor, .colorOptions {
+#currentColor, .colorOptions, #customColor, #addColorBtn, .coloringTemplates {
   margin: auto 2px;
   border-radius: 5px;
   box-shadow: 1px 1px 2px;
@@ -86,11 +87,12 @@
 
 #colorSection {
   grid-column: 1/2;
-  overflow: hidden; }
+  overflow: hidden;
+  border-right: 1px solid gray; }
 
 #coloringTemplateSection {
   grid-column: 2/3;
-  background-color: hotpink; }
+  padding-left: 20px; }
 
 #currentColor {
   border: 1px solid #000;
@@ -105,11 +107,27 @@
   width: 35px;
   margin-top: 31px; }
 
-.newColorSection {
-  margin-top: 38px; }
-
 #customColor {
-  margin-left: 10px; }
+  border: 1px solid #000;
+  height: 35px;
+  width: 35px;
+  margin: 31px 0 0 15px;
+  background-color: #ffffff; }
+
+#addColorBtn {
+  border: 1px solid #000;
+  height: 20px;
+  width: 20px;
+  margin: 40px 0 0 7px;
+  font-weight: bolder;
+  background-color: white; }
+
+.coloringTemplates {
+  height: 70px;
+  width: 70px;
+  border: 1px solid #000;
+  margin: 15px 10px 0 0;
+  float: left; }
 
 #mainMenu {
   background-color: sandybrown; }

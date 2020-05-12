@@ -1,4 +1,4 @@
-import {CANVAS, CONTEXT} from "../Globals";
+import {BOUNDS, CANVAS, CONTEXT} from "../Globals";
 
 export default class ResizeCanvas {
     public dragging: boolean = false;
@@ -21,7 +21,7 @@ export default class ResizeCanvas {
             let picture = CANVAS.toDataURL();
             let img = new Image;
             img.src = picture;
-            if(event.clientY >= CANVAS.height){
+            if(event.clientY-BOUNDS.top-scrollY >= CANVAS.height){
                 CANVAS.width += 5;
                 CANVAS.height += 5;
                 img.onload = function () {
