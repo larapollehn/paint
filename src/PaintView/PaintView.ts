@@ -106,27 +106,27 @@ export default class PaintView {
     }
 
     addServiceEventListener() {
-        const undo_btn = document.getElementById('undoBtn');
+        const undo_btn: HTMLElement = <HTMLButtonElement>document.getElementById('undoBtn');
         undo_btn.addEventListener('click', this.UndoButton.undo);
 
-        const reverse_undo_btn = document.getElementById('reverseUndoBtn');
+        const reverse_undo_btn: HTMLElement = <HTMLButtonElement>document.getElementById('reverseUndoBtn');
         reverse_undo_btn.addEventListener('click', this.UndoButton.reverseUndo)
 
-        const download_btn = document.getElementById('downloadBtn');
+        const download_btn: HTMLElement = <HTMLButtonElement>document.getElementById('downloadBtn');
         download_btn.addEventListener('click', this.DownloadButton.download);
 
-        const newDrawing_btn = document.getElementById('newDrawingBtn');
+        const newDrawing_btn: HTMLElement = <HTMLButtonElement>document.getElementById('newDrawingBtn');
         newDrawing_btn.addEventListener('click', this.newDrawing);
 
-        const resize_drag_btn = document.getElementById('dragBtn');
+        const resize_drag_btn: HTMLElement = <HTMLButtonElement>document.getElementById('dragBtn');
         resize_drag_btn.addEventListener('mousedown', this.ResizeButton.start);
 
-        const custom_color_btn = document.getElementById('addColorBtn');
+        const custom_color_btn: HTMLElement = <HTMLButtonElement>document.getElementById('addColorBtn');
         custom_color_btn.addEventListener('click', this.addCustomColor);
     }
 
     displayCurrentColor() {
-        const currentColorSquare = document.getElementById('currentColor');
+        const currentColorSquare: HTMLElement = <HTMLDivElement>document.getElementById('currentColor');
         currentColorSquare.style.backgroundColor = this.currentColor.rgbValue;
     }
 
@@ -134,9 +134,9 @@ export default class PaintView {
      * creates an HTML-Div for each Color of the globally set colors and fills it accordingly
      */
     displayColorPallet() {
-        const colorOptionsContainer = document.getElementById('colorOptions');
+        const colorOptionsContainer: HTMLElement = <HTMLDivElement>document.getElementById('colorOptions');
         for (let color in this.colorOptions) {
-            const square = document.createElement('div');
+            const square: HTMLElement = <HTMLDivElement>document.createElement('div');
             square.classList.add('colorOptions');
             square.style.backgroundColor = this.colorOptions[color].rgbValue;
             square.id = this.colorOptions[color].rgbValue;
@@ -146,7 +146,7 @@ export default class PaintView {
     }
 
     displayCurrentGear() {
-        const currentGearSquare = document.getElementById('currentGear');
+        const currentGearSquare: HTMLElement = <HTMLDivElement>document.getElementById('currentGear');
         currentGearSquare.style.backgroundImage = 'url("' + this.currentGear.icon + '")';
         currentGearSquare.style.backgroundSize = 'cover';
     }
@@ -155,9 +155,9 @@ export default class PaintView {
      * creates an HTML-Div for each Gear of the globally set gears and displays the specific icon
      */
     displayGearOptions() {
-        const GearOptionContainer = document.getElementById('gearOptions');
+        const GearOptionContainer: HTMLElement = <HTMLDivElement>document.getElementById('gearOptions');
         for (let gear in this.gearOptions) {
-            const square = document.createElement('div');
+            const square: HTMLElement = <HTMLDivElement>document.createElement('div');
             square.classList.add('gearOption');
             square.id = gear;
             square.style.backgroundImage = 'url("' + this.gearOptions[gear].icon + '")';
@@ -168,14 +168,14 @@ export default class PaintView {
     }
 
     displayCurrentLineWidth() {
-        const CurrentLineWidthSquare = document.getElementById('currentLineWidth');
+        const CurrentLineWidthSquare: HTMLElement = <HTMLDivElement>document.getElementById('currentLineWidth');
         CurrentLineWidthSquare.innerText = `${this.currentLineWidth.width}`;
     }
 
     displayLineWidthOptions() {
-        const LineWidthOptionsContainer = document.getElementById('lineWidthOptions');
+        const LineWidthOptionsContainer: HTMLElement = <HTMLDivElement>document.getElementById('lineWidthOptions');
         for (let option in this.lineWidthOptions) {
-            const square = document.createElement('div');
+            const square: HTMLElement = <HTMLDivElement>document.createElement('div');
             square.classList.add('lineWidthOptions');
             square.id = option;
             square.innerText = this.lineWidthOptions[option].width;
@@ -185,9 +185,9 @@ export default class PaintView {
     }
 
     displayColoringTemplates() {
-        const TemplateContainer = document.getElementById('coloringTemplates');
+        const TemplateContainer: HTMLElement = <HTMLDivElement>document.getElementById('coloringTemplates');
         for (let template in this.coloringTemplates) {
-            const square = document.createElement('div');
+            const square: HTMLElement = <HTMLDivElement>document.createElement('div');
             square.classList.add('coloringTemplates');
             square.id = template;
             square.style.backgroundImage = 'url("' + this.coloringTemplates[template].png + '")';
@@ -244,20 +244,20 @@ export default class PaintView {
     }
 
     addCustomColor() {
-        let custom_color = document.getElementById('customColor').value;
+        let custom_color: HTMLElement = <HTMLInputElement>document.getElementById('customColor').value;
         let Color: CustomColors = new CustomColors(custom_color);
         let RGBColor: RGB = Color.createRGB();
-        const colorOptionsContainer = document.getElementById('colorOptions');
+        const colorOptionsContainer: HTMLElement = <HTMLDivElement>document.getElementById('colorOptions');
 
         this.colorOptions[RGBColor.rgbValue] = RGBColor;
         COLORS.push(RGBColor);
-        const square = document.createElement('div');
+        const square: HTMLElement = <HTMLDivElement>document.createElement('div');
         square.classList.add('colorOptions');
         square.style.backgroundColor = this.colorOptions[RGBColor.rgbValue].rgbValue;
         square.id = Color.rgbValue();
         square.addEventListener('click', this.colorChange)
 
-        if (COLORS.length <= 8){
+        if (COLORS.length <= 8) {
             colorOptionsContainer.appendChild(square);
         } else {
             COLORS.splice(3, 1);
