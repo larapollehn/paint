@@ -1,3 +1,57 @@
 #leftBar{
-  background-color: aquamarine;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: 50% 50%;
+  background-color: lightgrey;
+  text-align: center;
+}
+
+%leftBorderCommons{
+  margin: 4px auto;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px;
+}
+
+#lineWidthSection{
+  grid-column: 1/2 ;
+  grid-row: 1/2;
+}
+
+#gearSection{
+  grid-column: 2/3 ;
+  grid-row: 1/2;
+}
+
+#currentGear{
+  @extend %leftBorderCommons;
+  border: $optionBorder;
+  height: 50px;
+  width: 50px;
+  margin-top: 20px;
+}
+
+.gearOption{
+  @extend %leftBorderCommons;
+  border: $optionBorder;
+  height: 35px;
+  width: 35px;
+}
+
+#currentLineWidth{
+  @extend %leftBorderCommons;
+  border: $optionBorder;
+  height: 30px;
+  width: 30px;
+  margin-top: 30px;
+}
+
+.lineWidthOptions{
+  @extend %leftBorderCommons;
+  border: $optionBorder;
+  height: 22px;
+  width: 22px;
+}
+
+.lineWidthOptions:hover {
+  background-color: grey;
 }

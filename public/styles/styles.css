@@ -25,21 +25,6 @@
   grid-column: 2/13;
   grid-row: 3/ 13; }
 
-#leftBar {
-  display: grid;
-  grid-template-columns: 30% 70%;
-  grid-template-rows: 50% 50%; }
-
-#lineWidthSection {
-  grid-column: 1/2;
-  grid-row: 1/2;
-  background-color: darkseagreen; }
-
-#gearSection {
-  grid-column: 2/3;
-  grid-row: 1/2;
-  background-color: darkgreen; }
-
 #topBar {
   display: grid;
   grid-template-columns: 30% 70%;
@@ -57,7 +42,49 @@
   border: 1px solid #d6d6d6; }
 
 #leftBar {
-  background-color: aquamarine; }
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: 50% 50%;
+  background-color: lightgrey;
+  text-align: center; }
+
+#currentGear, .gearOption, #currentLineWidth, .lineWidthOptions {
+  margin: 4px auto;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px; }
+
+#lineWidthSection {
+  grid-column: 1/2;
+  grid-row: 1/2; }
+
+#gearSection {
+  grid-column: 2/3;
+  grid-row: 1/2; }
+
+#currentGear {
+  border: 1px solid #000;
+  height: 50px;
+  width: 50px;
+  margin-top: 20px; }
+
+.gearOption {
+  border: 1px solid #000;
+  height: 35px;
+  width: 35px; }
+
+#currentLineWidth {
+  border: 1px solid #000;
+  height: 30px;
+  width: 30px;
+  margin-top: 30px; }
+
+.lineWidthOptions {
+  border: 1px solid #000;
+  height: 22px;
+  width: 22px; }
+
+.lineWidthOptions:hover {
+  background-color: grey; }
 
 #topBar {
   background-color: thistle; }
