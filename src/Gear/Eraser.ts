@@ -1,7 +1,7 @@
 import Gear from "./Gear";
 import ParameterList from "../Parameters";
 import RGB from "../Geo/RGB";
-import {CONTEXT} from "../Globals";
+import {BOUNDS, CONTEXT} from "../Globals";
 // @ts-ignore
 import eraser_icon from "../../public/assets/icons/eraser.png";
 
@@ -38,11 +38,11 @@ export default class Eraser extends Gear{
             if (self.painting) {
                 CONTEXT.lineWidth = parameterList.lineWidth.width*2;
                 CONTEXT.lineCap = 'round';
-                CONTEXT.lineTo(event.clientX, event.clientY);
+                CONTEXT.lineTo(event.clientX-BOUNDS.left-scrollX, event.clientY-BOUNDS.top-scrollY);
                 CONTEXT.strokeStyle = self.color.rgbValue;
                 CONTEXT.stroke();
                 CONTEXT.beginPath();
-                CONTEXT.moveTo(event.clientX, event.clientY);
+                CONTEXT.moveTo(event.clientX-BOUNDS.left-scrollX, event.clientY-BOUNDS.top-scrollY);
             }
         }
         return toDraw;

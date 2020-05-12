@@ -1,5 +1,5 @@
 import Gear from "./Gear";
-import {CONTEXT} from "../Globals";
+import {BOUNDS, CONTEXT} from "../Globals";
 // @ts-ignore
 import dragRec_icon from "../../public/assets/icons/drag_rect.png";
 import Point2D from "../Geo/Point2D";
@@ -16,7 +16,7 @@ export default class DragRectangle extends Gear{
     start(color): Function {
         const self = this;
         function startDrawing(event) {
-            self.startPoint = new Point2D(event.clientX, event.clientY);
+            self.startPoint = new Point2D(event.clientX-BOUNDS.left-scrollX, event.clientY-BOUNDS.top-scrollY);
         }
         return startDrawing;
     }
@@ -32,11 +32,11 @@ export default class DragRectangle extends Gear{
             CONTEXT.beginPath();
             CONTEXT.fillStyle = parameterList.color.rgbValue;
             CONTEXT.moveTo(self.startPoint.x, self.startPoint.y);
-            CONTEXT.lineTo(event.clientX, self.startPoint.y);
-            CONTEXT.lineTo(self.startPoint.x, event.clientY);
-            CONTEXT.moveTo(event.clientX, event.clientY);
-            CONTEXT.lineTo(event.clientX, self.startPoint.y);
-            CONTEXT.lineTo(self.startPoint.x, event.clientY);
+            CONTEXT.lineTo(event.clientX-BOUNDS.left-scrollX, self.startPoint.y);
+            CONTEXT.lineTo(self.startPoint.x, event.clientY-BOUNDS.top-scrollY);
+            CONTEXT.moveTo(event.clientX-BOUNDS.left-scrollX, event.clientY-BOUNDS.top-scrollY);
+            CONTEXT.lineTo(event.clientX-BOUNDS.left-scrollX, self.startPoint.y);
+            CONTEXT.lineTo(self.startPoint.x, event.clientY-BOUNDS.top-scrollY);
             CONTEXT.fill();
             parameterList.undoButton.saveImage();
         }

@@ -1,7 +1,7 @@
 import Gear from "./Gear";
 // @ts-ignore
 import rect_icon from "../../public/assets/icons/rect.png";
-import {CONTEXT} from "../Globals";
+import {BOUNDS, CONTEXT} from "../Globals";
 import ParameterList from "../Parameters";
 
 export default class Rectangle extends Gear{
@@ -17,7 +17,7 @@ export default class Rectangle extends Gear{
         function startDrawing(event){
             CONTEXT.beginPath();
             CONTEXT.fillStyle = parameterList.color.rgbValue;
-            CONTEXT.fillRect(event.clientX-((parameterList.lineWidth.width *10)/2), event.clientY-((parameterList.lineWidth.width *10)/2), parameterList.lineWidth.width *10, parameterList.lineWidth.width *10);
+            CONTEXT.fillRect(event.clientX-((parameterList.lineWidth.width *10)/2)-BOUNDS.left-scrollX, event.clientY-((parameterList.lineWidth.width *10)/2)-BOUNDS.top-scrollY, parameterList.lineWidth.width *10, parameterList.lineWidth.width *10);
             parameterList.undoButton.saveImage();
         }
        return startDrawing;

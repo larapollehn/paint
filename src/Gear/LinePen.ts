@@ -1,4 +1,4 @@
-import {CONTEXT} from "../Globals";
+import {BOUNDS, CONTEXT} from "../Globals";
 import Gear from "./Gear";
 // @ts-ignore
 import line_icon from "../../public/assets/icons/line.png";
@@ -21,7 +21,7 @@ export default class LinePen extends Gear {
         const self = this;
         function startDrawing(event) {
             self.painting = true;
-            self.startPoint = new Point2D(event.clientX, event.clientY);
+            self.startPoint = new Point2D(event.clientX-BOUNDS.left-scrollX, event.clientY-BOUNDS.top-scrollY);
             self.finish(event);
             self.painting = true;
         }
@@ -41,7 +41,7 @@ export default class LinePen extends Gear {
             CONTEXT.lineWidth = 4;
             CONTEXT.lineCap = 'round';
             CONTEXT.moveTo(self.startPoint.x, self.startPoint.y);
-            CONTEXT.lineTo(event.clientX, event.clientY);
+            CONTEXT.lineTo(event.clientX-BOUNDS.left-scrollX, event.clientY-BOUNDS.top-scrollY);
             CONTEXT.strokeStyle = parameterList.color.rgbValue;
             CONTEXT.stroke();
             parameterList.undoButton.saveImage();

@@ -1,5 +1,5 @@
 import Gear from "./Gear";
-import {CANVAS, CONTEXT} from "../Globals";
+import {BOUNDS, CANVAS, CONTEXT} from "../Globals";
 // @ts-ignore
 import brush_icon from '../../public/assets/icons/tools.png';
 import RGB from "../Geo/RGB";
@@ -33,16 +33,15 @@ export default class Brush extends Gear {
 
     draw(parameterList): Function {
         const self = this;
-        const bounds = CANVAS.getBoundingClientRect();
         function toDraw(event) {
             if (self.painting) {
                 CONTEXT.lineWidth = parameterList.lineWidth.width;
                 CONTEXT.lineCap = 'round';
-                CONTEXT.lineTo(event.pageX-bounds.left-scrollX, event.pageY-bounds.top-scrollY);
+                CONTEXT.lineTo(event.pageX-BOUNDS.left-scrollX, event.pageY-BOUNDS.top-scrollY);
                 CONTEXT.strokeStyle = parameterList.color.rgbValue;
                 CONTEXT.stroke();
                 CONTEXT.beginPath();
-                CONTEXT.moveTo(event.pageX-bounds.left-scrollX, event.pageY-bounds.top-scrollY);
+                CONTEXT.moveTo(event.pageX-BOUNDS.left-scrollX, event.pageY-BOUNDS.top-scrollY);
             }
         }
         return toDraw;

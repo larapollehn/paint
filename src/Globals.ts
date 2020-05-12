@@ -28,8 +28,9 @@ import ColoringTemplate from "./Services/ColoringTemplate";
 
 const CANVAS: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('myCanvas');
 const CONTEXT = CANVAS.getContext('2d');
+const BOUNDS = CANVAS.getBoundingClientRect();
 
-export {CANVAS, CONTEXT};
+export {CANVAS, CONTEXT, BOUNDS};
 
 export const DEFAULT_GEAR = new Brush();
 

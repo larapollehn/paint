@@ -1,5 +1,5 @@
 import Gear from "./Gear";
-import {CONTEXT} from "../Globals";
+import {BOUNDS, CONTEXT} from "../Globals";
 // @ts-ignore
 import drag_arc from "../../public/assets/icons/drag_arc.png";
 import Point2D from "../Geo/Point2D";
@@ -17,7 +17,7 @@ export default class DragCircle extends Gear{
     start(): Function {
         const self = this;
         function startDrawing(event) {
-            self.startPoint = new Point2D(event.clientX, event.clientY);
+            self.startPoint = new Point2D(event.clientX-BOUNDS.left-scrollX, event.clientY-BOUNDS.top-scrollY);
         }
         return startDrawing;
     }
@@ -29,9 +29,9 @@ export default class DragCircle extends Gear{
     finish(parameterList: ParameterList): Function {
         const self = this;
         function finishDrawing(event) {
-            const radius = Math.sqrt(Math.pow(event.clientX - self.startPoint.x, 2) + Math.pow(event.clientY - self.startPoint.y,2))/2
+            const radius = Math.sqrt(Math.pow(event.clientX-BOUNDS.left-scrollX - self.startPoint.x, 2) + Math.pow(event.clientY-BOUNDS.top-scrollY - self.startPoint.y,2))/2
             CONTEXT.beginPath();
-            CONTEXT.arc((event.clientX + self.startPoint.x)/2, (event.clientY + self.startPoint.y)/2, radius, 0, 2* Math.PI);
+            CONTEXT.arc((event.clientX-BOUNDS.left-scrollX + self.startPoint.x)/2, (event.clientY-BOUNDS.top-scrollY + self.startPoint.y)/2, radius, 0, 2* Math.PI);
             CONTEXT.fillStyle = parameterList.color.rgbValue;
             CONTEXT.fill();
             parameterList.undoButton.saveImage();

@@ -1,5 +1,5 @@
 import Gear from "./Gear";
-import {CANVAS, CONTEXT} from "../Globals";
+import {BOUNDS, CANVAS, CONTEXT} from "../Globals";
 // @ts-ignore
 import spray_icon from '../../public/assets/icons/spraycan.png';
 import ParameterList from "../Parameters";
@@ -33,16 +33,15 @@ export default class Airbrush extends Gear {
 
     draw(parameterList): Function {
         const self = this;
-        const bounds = CANVAS.getBoundingClientRect();
         function toDraw(event) {
             if (self.painting) {
                 CONTEXT.lineWidth = 0.2;
                 CONTEXT.lineCap = 'round';
-                self.airbrushEffect(event.clientX-((parameterList.lineWidth.width*10)/2)-bounds.left-scrollX, event.clientY-((parameterList.lineWidth.width*10)/2)-bounds.top-scrollY, parameterList);
+                self.airbrushEffect(event.clientX-BOUNDS.left-scrollX, event.clientY-BOUNDS.top-scrollY, parameterList);
                 CONTEXT.strokeStyle = parameterList.color.rgbValue;
                 CONTEXT.stroke();
                 CONTEXT.beginPath();
-                self.airbrushEffect(event.clientX-((parameterList.lineWidth.width*10)/2)-bounds.left-scrollX, event.clientY-((parameterList.lineWidth.width*10)/2)-bounds.top-scrollY, parameterList);
+                self.airbrushEffect(event.clientX-BOUNDS.left-scrollX, event.clientY-BOUNDS.top-scrollY, parameterList);
             }
         }
         return toDraw;

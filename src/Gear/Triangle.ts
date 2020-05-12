@@ -1,5 +1,5 @@
 import Gear from "./Gear";
-import {CONTEXT} from "../Globals";
+import {BOUNDS, CONTEXT} from "../Globals";
 // @ts-ignore
 import triangle_icon from "../../public/assets/icons/triangle.png";
 import ParameterList from "../Parameters";
@@ -19,9 +19,9 @@ export default class Triangle extends Gear{
         function startDrawing(event){
             CONTEXT.beginPath();
             CONTEXT.fillStyle = parameterList.color.rgbValue;
-            CONTEXT.moveTo(event.clientX-leftDrift, event.clientY+leftDrift);
-            CONTEXT.lineTo(event.clientX+rightDrift-leftDrift, event.clientY+leftDrift);
-            CONTEXT.lineTo(event.clientX,(event.clientY-rightDrift+leftDrift));
+            CONTEXT.moveTo(event.clientX-leftDrift-BOUNDS.left-scrollX, event.clientY+leftDrift-BOUNDS.top-scrollY);
+            CONTEXT.lineTo(event.clientX+rightDrift-leftDrift-BOUNDS.left-scrollX, event.clientY+leftDrift-BOUNDS.top-scrollY);
+            CONTEXT.lineTo(event.clientX-BOUNDS.left-scrollX,(event.clientY-rightDrift+leftDrift-BOUNDS.top-scrollY));
             CONTEXT.fill();
             parameterList.undoButton.saveImage();
         }
