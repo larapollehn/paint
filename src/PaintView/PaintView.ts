@@ -244,15 +244,24 @@ export default class PaintView {
         let custom_color = document.getElementById('customColor').value;
         let Color: CustomColors = new CustomColors(custom_color);
         let RGBColor: RGB = Color.createRGB();
-        this.colorOptions[RGBColor.rgbValue] = RGBColor;
-
         const colorOptionsContainer = document.getElementById('colorOptions');
+
+        this.colorOptions[RGBColor.rgbValue] = RGBColor;
+        COLORS.push(RGBColor);
         const square = document.createElement('div');
         square.classList.add('colorOptions');
         square.style.backgroundColor = this.colorOptions[RGBColor.rgbValue].rgbValue;
         square.id = Color.rgbValue();
         square.addEventListener('click', this.colorChange)
-        colorOptionsContainer.appendChild(square);
+
+        if (COLORS.length <= 8){
+            colorOptionsContainer.appendChild(square);
+        } else {
+            COLORS.splice(3, 1);
+            colorOptionsContainer.removeChild(colorOptionsContainer.childNodes[4]);
+            colorOptionsContainer.appendChild(square);
+        }
+        console.log(COLORS, RGBColor, this.colorOptions);
     }
 
 }

@@ -37,7 +37,7 @@ export default class Eraser extends Gear{
         function toDraw(event) {
             if (self.painting) {
                 CONTEXT.lineWidth = parameterList.lineWidth.width*2;
-                CONTEXT.lineCap = 'square';
+                CONTEXT.lineCap = 'round';
                 CONTEXT.lineTo(event.clientX, event.clientY);
                 CONTEXT.strokeStyle = self.color.rgbValue;
                 CONTEXT.stroke();
