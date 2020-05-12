@@ -1,3 +1,47 @@
-#topBar{
-  background-color: thistle;
+#topBar {
+  display: grid;
+  grid-template-columns:  30% 70%;
+  grid-template-rows: 100%;
+}
+
+%topBorderCommons{
+  margin: auto 2px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px;
+  float: left;
+}
+
+#colorSection {
+  grid-column: 1/2;
+  overflow: hidden;
+}
+
+#coloringTemplateSection {
+  grid-column: 2/3;
+  background-color: hotpink;
+}
+
+#currentColor{
+  @extend %topBorderCommons;
+  border: $optionBorder;
+  height: 50px;
+  width: 50px;
+  margin-left: 20px;
+  margin-top: 23px;
+}
+
+.colorOptions{
+  @extend %topBorderCommons;
+  border: $optionBorder;
+  height: 35px;
+  width: 35px;
+  margin-top: 31px;
+}
+
+.newColorSection{
+  margin-top: 38px;
+}
+
+#customColor{
+  margin-left: 10px;
 }

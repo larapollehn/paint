@@ -25,19 +25,6 @@
   grid-column: 2/13;
   grid-row: 3/ 13; }
 
-#topBar {
-  display: grid;
-  grid-template-columns: 30% 70%;
-  grid-template-rows: 100%; }
-
-#colorSection {
-  grid-column: 1/2;
-  background-color: deeppink; }
-
-#coloringTemplateSection {
-  grid-column: 2/3;
-  background-color: hotpink; }
-
 #myCanvas {
   border: 1px solid #d6d6d6; }
 
@@ -87,7 +74,42 @@
   background-color: grey; }
 
 #topBar {
-  background-color: thistle; }
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 100%; }
+
+#currentColor, .colorOptions {
+  margin: auto 2px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px;
+  float: left; }
+
+#colorSection {
+  grid-column: 1/2;
+  overflow: hidden; }
+
+#coloringTemplateSection {
+  grid-column: 2/3;
+  background-color: hotpink; }
+
+#currentColor {
+  border: 1px solid #000;
+  height: 50px;
+  width: 50px;
+  margin-left: 20px;
+  margin-top: 23px; }
+
+.colorOptions {
+  border: 1px solid #000;
+  height: 35px;
+  width: 35px;
+  margin-top: 31px; }
+
+.newColorSection {
+  margin-top: 38px; }
+
+#customColor {
+  margin-left: 10px; }
 
 #mainMenu {
   background-color: sandybrown; }

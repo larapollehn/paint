@@ -257,7 +257,7 @@ export default class PaintView {
         square.id = Color.rgbValue();
         square.addEventListener('click', this.colorChange)
 
-        if (COLORS.length <= 8) {
+        if (COLORS.length <= 9) {
             colorOptionsContainer.appendChild(square);
         } else {
             COLORS.splice(3, 1);

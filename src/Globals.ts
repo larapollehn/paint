@@ -53,6 +53,7 @@ export let COLORS = [
     new RGB(255, 0, 0),
     new RGB(0, 0, 255),
     new RGB(0, 128, 0),
+    new RGB(255, 255, 0),
 ];
 
 export const DEFAULT_LINE_WIDTH = new LineWidth(4);
