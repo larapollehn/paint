@@ -10,6 +10,7 @@ export default class Undo {
         this.saveImage = this.saveImage.bind(this);
         this.undo = this.undo.bind(this);
         this.clearCanvas = this.clearCanvas.bind(this);
+        this.reverseUndo = this.reverseUndo.bind(this);
     }
 
     /**
@@ -48,6 +49,21 @@ export default class Undo {
             }
         } else {
             alert('no more undo possible');
+        }
+    }
+
+    reverseUndo(){
+        if (this.currentPic < 4){
+            this.clearCanvas();
+            let dataURL = sessionStorage.getItem(`pic${this.currentPic+1}`);
+            this.currentPic = this.currentPic + 1;
+            let img = new Image;
+            img.src = dataURL;
+            img.onload = function () {
+                CONTEXT.drawImage(img, 0, 0);
+            }
+        } else {
+            alert("cant go any further");
         }
     }
 

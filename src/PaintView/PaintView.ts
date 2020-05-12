@@ -109,6 +109,9 @@ export default class PaintView {
         const undo_btn = document.getElementById('undoBtn');
         undo_btn.addEventListener('click', this.UndoButton.undo);
 
+        const reverse_undo_btn = document.getElementById('reverseUndoBtn');
+        reverse_undo_btn.addEventListener('click', this.UndoButton.reverseUndo)
+
         const download_btn = document.getElementById('downloadBtn');
         download_btn.addEventListener('click', this.DownloadButton.download);
 
