@@ -18,6 +18,8 @@ import Download from "../Services/Download";
 import ColoringTemplate from "../Services/ColoringTemplate";
 import ResizeCanvas from "../Services/ResizeCanvas";
 import CustomColors from "../Services/CustomColors";
+// @ts-ignore
+import back_icon from "../../public/assets/icons/back.png"
 
 export default class PaintView {
     public currentColor: RGB = DEFAULT_COLOR;
@@ -70,6 +72,7 @@ export default class PaintView {
         this.displayColoringTemplates = this.displayColoringTemplates.bind(this);
         this.drawColoringTemplate = this.drawColoringTemplate.bind(this);
         this.addCustomColor = this.addCustomColor.bind(this);
+        this.setServiceIcons = this.setServiceIcons.bind(this);
     }
 
     initialize() {
@@ -82,6 +85,7 @@ export default class PaintView {
         this.displayColoringTemplates();
         this.addEventListener();
         this.addServiceEventListener();
+        this.setServiceIcons();
         CANVAS.width = 700;
         CANVAS.height = 400;
     }
@@ -257,7 +261,7 @@ export default class PaintView {
         square.id = Color.rgbValue();
         square.addEventListener('click', this.colorChange)
 
-        if (COLORS.length <= 9) {
+        if (COLORS.length <= 11) {
             colorOptionsContainer.appendChild(square);
         } else {
             COLORS.splice(3, 1);
@@ -265,6 +269,12 @@ export default class PaintView {
             colorOptionsContainer.appendChild(square);
         }
         console.log(COLORS, RGBColor, this.colorOptions);
+    }
+
+    setServiceIcons(){
+        const backBtn = document.getElementById('undoBtn');
+        backBtn.style.backgroundImage = 'url("' + back_icon + '")';
+        backBtn.style.backgroundSize = 'cover';
     }
 
 }
