@@ -25,11 +25,17 @@ import princess_template from "../public/assets/images/princess.png";
 // @ts-ignore
 import pig_template from "../public/assets/images/pig.png";
 import ColoringTemplate from "./Services/ColoringTemplate";
+// @ts-ignore
 import XS_icon from "../public/assets/icons/XS.png";
+// @ts-ignore
 import S_icon from "../public/assets/icons/S.png";
+// @ts-ignore
 import M_icon from "../public/assets/icons/M.png";
+// @ts-ignore
 import L_icon from "../public/assets/icons/L.png";
+// @ts-ignore
 import XL_icon from "../public/assets/icons/XL.png";
+// @ts-ignore
 import XXL_icon from "../public/assets/icons/XXL.png";
 
 const CANVAS: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('myCanvas');
