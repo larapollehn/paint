@@ -3,6 +3,7 @@
   grid-template-columns:  30% 70%;
   grid-template-rows: 100%;
   background-color: $navBackground;
+  border-bottom: $navBorder;
 }
 
 %topBorderCommons{
@@ -15,7 +16,7 @@
 #colorSection {
   grid-column: 1/2;
   overflow: hidden;
-  border-right: 1px solid gray;
+  border-right: $navBorder;
 }
 
 #coloringTemplateSection {
@@ -61,9 +62,9 @@
 
 .coloringTemplates{
   @extend %topBorderCommons;
-  height: 70px;
-  width: 70px;
+  height: 80px;
+  width: 140px;
   border: $optionBorder;
-  margin: 15px 10px 0 0;
+  margin: 10px 10px 0 0;
   float: left;
 }

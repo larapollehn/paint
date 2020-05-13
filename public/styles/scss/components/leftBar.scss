@@ -1,9 +1,10 @@
 #leftBar{
   display: grid;
   grid-template-columns: 40% 60%;
-  grid-template-rows: 50% 50%;
+  grid-template-rows: 45% 55%;
   background-color: $navBackground;
   text-align: center;
+  border-right: $navBorder;
 }
 
 %leftBorderCommons{
@@ -15,11 +16,13 @@
 #lineWidthSection{
   grid-column: 1/2 ;
   grid-row: 1/2;
+  border-bottom: $navBorder ;
 }
 
 #gearSection{
   grid-column: 2/3 ;
   grid-row: 1/2;
+  border-bottom: $navBorder;
 }
 
 #currentGear{
@@ -37,6 +40,10 @@
   height: 35px;
   width: 35px;
   background-color: #c0c0c0;
+}
+
+.gearOption:hover{
+  background-color: #fff;
 }
 
 #currentLineWidth{
@@ -57,5 +64,5 @@
 }
 
 .lineWidthOptions:hover {
-  background-color: grey;
+  background-color: #fff;
 }

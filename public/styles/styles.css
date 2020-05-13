@@ -42,9 +42,10 @@
 #leftBar {
   display: grid;
   grid-template-columns: 40% 60%;
-  grid-template-rows: 50% 50%;
+  grid-template-rows: 45% 55%;
   background-color: #407294;
-  text-align: center; }
+  text-align: center;
+  border-right: 1px solid #d6d6d6; }
 
 #currentGear, .gearOption, #currentLineWidth, .lineWidthOptions {
   margin: 4px auto;
@@ -53,11 +54,13 @@
 
 #lineWidthSection {
   grid-column: 1/2;
-  grid-row: 1/2; }
+  grid-row: 1/2;
+  border-bottom: 1px solid #d6d6d6; }
 
 #gearSection {
   grid-column: 2/3;
-  grid-row: 1/2; }
+  grid-row: 1/2;
+  border-bottom: 1px solid #d6d6d6; }
 
 #currentGear {
   border: 1px solid #fff;
@@ -71,6 +74,9 @@
   height: 35px;
   width: 35px;
   background-color: #c0c0c0; }
+
+.gearOption:hover {
+  background-color: #fff; }
 
 #currentLineWidth {
   border: 1px solid #fff;
@@ -86,13 +92,14 @@
   background-color: #c0c0c0; }
 
 .lineWidthOptions:hover {
-  background-color: grey; }
+  background-color: #fff; }
 
 #topBar {
   display: grid;
   grid-template-columns: 30% 70%;
   grid-template-rows: 100%;
-  background-color: #407294; }
+  background-color: #407294;
+  border-bottom: 1px solid #d6d6d6; }
 
 #currentColor, .colorOptions, #customColor, #addColorBtn, .coloringTemplates {
   margin: auto 2px;
@@ -103,7 +110,7 @@
 #colorSection {
   grid-column: 1/2;
   overflow: hidden;
-  border-right: 1px solid gray; }
+  border-right: 1px solid #d6d6d6; }
 
 #coloringTemplateSection {
   grid-column: 2/3;
@@ -138,19 +145,57 @@
   background-color: white; }
 
 .coloringTemplates {
-  height: 70px;
-  width: 70px;
+  height: 80px;
+  width: 140px;
   border: 1px solid #fff;
-  margin: 15px 10px 0 0;
+  margin: 10px 10px 0 0;
   float: left; }
+
+#mainMenu {
+  background-color: #407294;
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-rows: 100%;
+  border-right: 1px solid #d6d6d6;
+  border-bottom: 1px solid #d6d6d6; }
+
+#mainMenu:hover {
+  background-color: #ececec;
+  border-radius: 3px; }
 
 #undoBtn, #reverseUndoBtn, #downloadBtn, #newDrawingBtn, #downloadPngBtn {
   height: 20px;
   width: 20px;
+  margin-top: 20px;
+  margin-left: 5px;
   display: inline-block; }
 
+#undoBtn {
+  grid-column: 3/4;
+  border-radius: 3px; }
+
+#reverseUndoBtn {
+  grid-column: 4/5;
+  border-radius: 3px; }
+
+#downloadBtn {
+  grid-column: 1/2;
+  border-radius: 3px; }
+
+#newDrawingBtn {
+  grid-column: 5/6;
+  border-radius: 3px; }
+
+#downloadPngBtn {
+  grid-column: 2/3;
+  border-radius: 3px; }
+
 #appTitle {
-  text-align: center; }
+  text-align: center;
+  font-family: 'Coiny', cursive;
+  color: white;
+  background-color: #407294;
+  border-right: 1px solid #d6d6d6; }
 
 * {
   padding: 0;

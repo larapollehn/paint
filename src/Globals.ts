@@ -9,21 +9,21 @@ import RGB from "./Geo/RGB";
 import LineWidth from "./Geo/LineWidth";
 import Eraser from "./Gear/Eraser";
 // @ts-ignore
-import fish_template from "../public/assets/images/fish.jpg";
+import fish_template from "../public/assets/images/fish.png";
 // @ts-ignore
-import frog_template from "../public/assets/images/frog.png";
+import house_template from "../public/assets/images/house.png";
 // @ts-ignore
-import mandala1_template from "../public/assets/images/mandala1.jpg";
+import mandala1_template from "../public/assets/images/mandala1.png";
 // @ts-ignore
-import mandala2_template from "../public/assets/images/mandala2.jpg";
+import mandala2_template from "../public/assets/images/mandala2.png";
 // @ts-ignore
-import minion_template from "../public/assets/images/minion.jpg";
+import minion_template from "../public/assets/images/minion.png";
 // @ts-ignore
-import pokemon_template from "../public/assets/images/pokemon.jpg";
+import pokemon_template from "../public/assets/images/pokemon.png";
 // @ts-ignore
-import princess_template from "../public/assets/images/princess.jpg";
+import princess_template from "../public/assets/images/princess.png";
 // @ts-ignore
-import unicorn_template from "../public/assets/images/unicorn.jpeg";
+import pig_template from "../public/assets/images/pig.png";
 import ColoringTemplate from "./Services/ColoringTemplate";
 import XS_icon from "../public/assets/icons/XS.png";
 import S_icon from "../public/assets/icons/S.png";
@@ -57,10 +57,10 @@ export const DEFAULT_COLOR = new RGB( 0,0,0);
 
 export let COLORS = [
     DEFAULT_COLOR,
-    new RGB(255, 0, 0),
-    new RGB(0, 0, 255),
-    new RGB(0, 128, 0),
-    new RGB(255, 255, 0),
+    new RGB(223, 34, 34),
+    new RGB(50, 115, 69),
+    new RGB(34, 80, 206),
+    new RGB(255, 215, 0),
 ];
 
 export const DEFAULT_LINE_WIDTH = new LineWidth(4, S_icon);
@@ -76,11 +76,11 @@ export const LINE_WIDTHS = [
 
 export const COLORING_TEMPLATES = [
     new ColoringTemplate('fish', fish_template),
-    new ColoringTemplate('frog', frog_template),
+    new ColoringTemplate('frog', house_template),
     new ColoringTemplate('mandala1', mandala1_template),
     new ColoringTemplate('mandala2', mandala2_template),
     new ColoringTemplate('minion', minion_template),
     new ColoringTemplate('pokemon', pokemon_template),
     new ColoringTemplate('princess', princess_template),
-    new ColoringTemplate('unicorn', unicorn_template)
+    new ColoringTemplate('unicorn', pig_template)
 ]
