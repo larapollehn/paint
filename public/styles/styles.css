@@ -29,6 +29,12 @@
   border-right: 1px solid #d6d6d6;
   border-bottom: 1px solid #d6d6d6; }
 
+#dragBtn {
+  height: 15px;
+  width: 15px;
+  background-color: transparent;
+  border: none; }
+
 #leftBar {
   display: grid;
   grid-template-columns: 40% 60%;
@@ -130,7 +136,7 @@
   margin: 15px 10px 0 0;
   float: left; }
 
-#undoBtn, #reverseUndoBtn, #downloadBtn, #newDrawingBtn {
+#undoBtn, #reverseUndoBtn, #downloadBtn, #newDrawingBtn, #downloadPngBtn {
   height: 20px;
   width: 20px;
   display: inline-block; }

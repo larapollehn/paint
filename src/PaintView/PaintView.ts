@@ -26,6 +26,10 @@ import forward_icon from "../../public/assets/icons/forward.png"
 import save_icon from "../../public/assets/icons/save.png";
 // @ts-ignore
 import new_icon from "../../public/assets/icons/new.png";
+// @ts-ignore
+import savePng_icon from "../../public/assets/icons/png.png";
+// @ts-ignore
+import drag_icon from "../../public/assets/icons/arrows.png";
 
 export default class PaintView {
     public currentColor: RGB = DEFAULT_COLOR;
@@ -124,6 +128,9 @@ export default class PaintView {
 
         const download_btn: HTMLElement = <HTMLButtonElement>document.getElementById('downloadBtn');
         download_btn.addEventListener('click', this.DownloadButton.download);
+
+        const saveAsPngButton = document.getElementById('downloadPngBtn');
+        saveAsPngButton.addEventListener('click', this.DownloadButton.download);
 
         const newDrawing_btn: HTMLElement = <HTMLButtonElement>document.getElementById('newDrawingBtn');
         newDrawing_btn.addEventListener('click', this.newDrawing);
@@ -290,9 +297,17 @@ export default class PaintView {
         saveBtn.style.backgroundImage = 'url("' + save_icon + '")';
         saveBtn.style.backgroundSize = 'cover';
 
+        const saveAsPngButton = document.getElementById('downloadPngBtn');
+        saveAsPngButton.style.backgroundImage = 'url("' + savePng_icon + '")';
+        saveAsPngButton.style.backgroundSize = 'cover';
+
         const newBtn = document.getElementById('newDrawingBtn');
         newBtn.style.backgroundImage = 'url("' + new_icon + '")';
         newBtn.style.backgroundSize = 'cover';
+
+        const dragButton = document.getElementById('dragBtn');
+        dragButton.style.backgroundImage = 'url("' + drag_icon + '")';
+        dragButton.style.backgroundSize = 'cover';
     }
 
 }

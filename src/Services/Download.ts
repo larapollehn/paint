@@ -8,14 +8,9 @@ export default class Download {
     }
 
     download() {
-        let download_checkbox = <HTMLInputElement>document.getElementById('downloadCheckBox');
-        if (download_checkbox.checked) {
-            window.location.href = CANVAS.toDataURL("image/png").replace("image/png", "image/octet-stream");
-        } else {
-            this.saveWhiteBackground();
-        }
-
+        window.location.href = CANVAS.toDataURL("image/png").replace("image/png", "image/octet-stream");
     }
+
 
     saveWhiteBackground() {
         let picture = CANVAS.toDataURL();
@@ -29,7 +24,7 @@ export default class Download {
         img.onload = function () {
             CONTEXT.drawImage(img, 0, 0);
             window.location.href = CANVAS.toDataURL("image/png").replace("image/png", "image/octet-stream");
-            CONTEXT.clearRect(0,0, CANVAS.width, CANVAS.height);
+            CONTEXT.clearRect(0, 0, CANVAS.width, CANVAS.height);
             CONTEXT.drawImage(img, 0, 0);
         }
     }

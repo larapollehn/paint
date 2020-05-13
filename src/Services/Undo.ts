@@ -47,8 +47,6 @@ export default class Undo {
             img.onload = function () {
                 CONTEXT.drawImage(img, 0, 0);
             }
-        } else {
-            alert('no more undo possible');
         }
     }
 
