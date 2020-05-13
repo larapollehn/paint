@@ -127,7 +127,7 @@ export default class PaintView {
         reverse_undo_btn.addEventListener('click', this.UndoButton.reverseUndo)
 
         const download_btn: HTMLElement = <HTMLButtonElement>document.getElementById('downloadBtn');
-        download_btn.addEventListener('click', this.DownloadButton.download);
+        download_btn.addEventListener('click', this.DownloadButton.saveWhiteBackground);
 
         const saveAsPngButton = document.getElementById('downloadPngBtn');
         saveAsPngButton.addEventListener('click', this.DownloadButton.download);
