@@ -8,7 +8,7 @@
 
 %leftBorderCommons{
   margin: 4px auto;
-  border-radius: 5px;
+  border-radius: 2px;
   box-shadow: 1px 1px 2px;
 }
 
@@ -28,6 +28,7 @@
   height: 50px;
   width: 50px;
   margin-top: 20px;
+  background-color: #ececec;
 }
 
 .gearOption{
@@ -35,6 +36,7 @@
   border: $optionBorder;
   height: 35px;
   width: 35px;
+  background-color: #c0c0c0;
 }
 
 #currentLineWidth{
@@ -43,6 +45,7 @@
   height: 30px;
   width: 30px;
   margin-top: 30px;
+  background-color: #ececec;
 }
 
 .lineWidthOptions{
@@ -50,6 +53,7 @@
   border: $optionBorder;
   height: 22px;
   width: 22px;
+  background-color: #c0c0c0;
 }
 
 .lineWidthOptions:hover {

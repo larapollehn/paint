@@ -39,12 +39,12 @@
   display: grid;
   grid-template-columns: 40% 60%;
   grid-template-rows: 50% 50%;
-  background-color: #d6d6d6;
+  background-color: #407294;
   text-align: center; }
 
 #currentGear, .gearOption, #currentLineWidth, .lineWidthOptions {
   margin: 4px auto;
-  border-radius: 5px;
+  border-radius: 2px;
   box-shadow: 1px 1px 2px; }
 
 #lineWidthSection {
@@ -56,26 +56,30 @@
   grid-row: 1/2; }
 
 #currentGear {
-  border: 1px solid #000;
+  border: 1px solid #fff;
   height: 50px;
   width: 50px;
-  margin-top: 20px; }
+  margin-top: 20px;
+  background-color: #ececec; }
 
 .gearOption {
-  border: 1px solid #000;
+  border: 1px solid #fff;
   height: 35px;
-  width: 35px; }
+  width: 35px;
+  background-color: #c0c0c0; }
 
 #currentLineWidth {
-  border: 1px solid #000;
+  border: 1px solid #fff;
   height: 30px;
   width: 30px;
-  margin-top: 30px; }
+  margin-top: 30px;
+  background-color: #ececec; }
 
 .lineWidthOptions {
-  border: 1px solid #000;
+  border: 1px solid #fff;
   height: 22px;
-  width: 22px; }
+  width: 22px;
+  background-color: #c0c0c0; }
 
 .lineWidthOptions:hover {
   background-color: grey; }
@@ -84,7 +88,7 @@
   display: grid;
   grid-template-columns: 30% 70%;
   grid-template-rows: 100%;
-  background-color: #d6d6d6; }
+  background-color: #407294; }
 
 #currentColor, .colorOptions, #customColor, #addColorBtn, .coloringTemplates {
   margin: auto 2px;
@@ -102,27 +106,27 @@
   padding-left: 20px; }
 
 #currentColor {
-  border: 1px solid #000;
+  border: 1px solid #fff;
   height: 50px;
   width: 50px;
   margin-left: 20px;
   margin-top: 23px; }
 
 .colorOptions {
-  border: 1px solid #000;
+  border: 1px solid #fff;
   height: 35px;
   width: 35px;
   margin-top: 31px; }
 
 #customColor {
-  border: 1px solid #000;
+  border: 1px solid #fff;
   height: 35px;
   width: 35px;
   margin: 31px 0 0 15px;
-  background-color: #d6d6d6; }
+  background-color: #fff; }
 
 #addColorBtn {
-  border: 1px solid #000;
+  border: 1px solid #fff;
   height: 20px;
   width: 20px;
   margin: 40px 0 0 7px;
@@ -132,7 +136,7 @@
 .coloringTemplates {
   height: 70px;
   width: 70px;
-  border: 1px solid #000;
+  border: 1px solid #fff;
   margin: 15px 10px 0 0;
   float: left; }
 

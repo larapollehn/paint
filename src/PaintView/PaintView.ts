@@ -186,7 +186,8 @@ export default class PaintView {
 
     displayCurrentLineWidth() {
         const CurrentLineWidthSquare: HTMLElement = <HTMLDivElement>document.getElementById('currentLineWidth');
-        CurrentLineWidthSquare.innerText = `${this.currentLineWidth.width}`;
+        CurrentLineWidthSquare.style.backgroundImage = 'url("' + this.currentLineWidth.icon + '")';
+        CurrentLineWidthSquare.style.backgroundSize = 'cover';
     }
 
     displayLineWidthOptions() {
@@ -195,7 +196,8 @@ export default class PaintView {
             const square: HTMLElement = <HTMLDivElement>document.createElement('div');
             square.classList.add('lineWidthOptions');
             square.id = option;
-            square.innerText = this.lineWidthOptions[option].width;
+            square.style.backgroundImage = 'url("' + this.lineWidthOptions[option].icon + '")';
+            square.style.backgroundSize = 'cover';
             square.addEventListener('click', this.changeLineWidth);
             LineWidthOptionsContainer.appendChild(square);
         }

@@ -25,6 +25,12 @@ import princess_template from "../public/assets/images/princess.jpg";
 // @ts-ignore
 import unicorn_template from "../public/assets/images/unicorn.jpeg";
 import ColoringTemplate from "./Services/ColoringTemplate";
+import XS_icon from "../public/assets/icons/XS.png";
+import S_icon from "../public/assets/icons/S.png";
+import M_icon from "../public/assets/icons/M.png";
+import L_icon from "../public/assets/icons/L.png";
+import XL_icon from "../public/assets/icons/XL.png";
+import XXL_icon from "../public/assets/icons/XXL.png";
 
 const CANVAS: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('myCanvas');
 const CONTEXT = CANVAS.getContext('2d');
@@ -57,15 +63,15 @@ export let COLORS = [
     new RGB(255, 255, 0),
 ];
 
-export const DEFAULT_LINE_WIDTH = new LineWidth(4);
+export const DEFAULT_LINE_WIDTH = new LineWidth(4, S_icon);
 
 export const LINE_WIDTHS = [
-    new LineWidth(2),
+    new LineWidth(2, XS_icon),
     DEFAULT_LINE_WIDTH,
-    new LineWidth(6),
-    new LineWidth(8),
-    new LineWidth(10),
-    new LineWidth(12)
+    new LineWidth(6, M_icon),
+    new LineWidth(8, L_icon),
+    new LineWidth(10, XL_icon),
+    new LineWidth(12, XXL_icon)
 ];
 
 export const COLORING_TEMPLATES = [
