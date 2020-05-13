@@ -11,7 +11,7 @@ You can choose from: a paint brush, airbrush spraycan, a rectangle and a triangl
 
 Furthermore you can draw rectangles, circles and lines by dragging them in the desired shape/length/size.
 
-If you've made a mistake do not worry, the last three actions are saved and can be undon. If by chance you then realize, the mistake wasn't one, ypu can "undo" the undo action.
+If you've made a mistake do not worry, the last three actions are saved and can be undon. If by chance you then realize, the mistake wasn't one, you can redo this action.
 
 ---
 ### Colors and Templates
@@ -26,5 +26,3 @@ ___
 The finished masterwork can be saved on your computer with or without a transparent background. Impress someone with your painting skills by sharing your piece of art 😉.
 
 ![alt app](images/drawing_2)
-
-![alt app](images/drawing_3)
