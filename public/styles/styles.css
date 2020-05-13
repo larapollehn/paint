@@ -27,13 +27,17 @@
 
 #myCanvas {
   border-right: 1px solid #d6d6d6;
-  border-bottom: 1px solid #d6d6d6; }
+  border-bottom: 1px solid #d6d6d6;
+  background-color: white; }
 
 #dragBtn {
-  height: 15px;
+  height: 30px;
   width: 15px;
   background-color: transparent;
   border: none; }
+
+#canvas {
+  background-color: #c0c0c0; }
 
 #leftBar {
   display: grid;
@@ -92,7 +96,7 @@
 
 #currentColor, .colorOptions, #customColor, #addColorBtn, .coloringTemplates {
   margin: auto 2px;
-  border-radius: 5px;
+  border-radius: 2px;
   box-shadow: 1px 1px 2px;
   float: left; }
 

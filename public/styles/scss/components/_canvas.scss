@@ -1,11 +1,16 @@
 #myCanvas{
   border-right: 1px solid $borderColor;
   border-bottom: 1px solid $borderColor;
+  background-color: white;
 }
 
 #dragBtn{
-  height: 15px;
+  height: 30px;
   width: 15px;
   background-color: transparent;
   border: none;
+}
+
+#canvas{
+  background-color: #c0c0c0;
 }
