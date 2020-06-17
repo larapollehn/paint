@@ -1,0 +1,11 @@
+version: '3.3'
+
+services:
+  sudoku:
+    container_name: paint
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - '3004:80'
